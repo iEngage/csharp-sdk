@@ -24,24 +24,22 @@ using System.ComponentModel.DataAnnotations;
 namespace IO.IEngage.Model
 {
     /// <summary>
-    /// VerveResponseFlowFinder
+    /// VerveResponseSentiment
     /// </summary>
     [DataContract]
-    public partial class VerveResponseFlowFinder :  IEquatable<VerveResponseFlowFinder>, IValidatableObject
+    public partial class VerveResponseSentiment :  IEquatable<VerveResponseSentiment>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VerveResponseFlowFinder" /> class.
+        /// Initializes a new instance of the <see cref="VerveResponseSentiment" /> class.
         /// </summary>
         /// <param name="StatusCode">StatusCode.</param>
         /// <param name="Message">Message.</param>
-        /// <param name="List">List.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Records">Records.</param>
-        public VerveResponseFlowFinder(string StatusCode = null, string Message = null, List<FlowFinder> List = null, FlowFinder Data = null, long? Records = null)
+        public VerveResponseSentiment(string StatusCode = null, string Message = null, Sentiment Data = null, long? Records = null)
         {
             this.StatusCode = StatusCode;
             this.Message = Message;
-            this.List = List;
             this.Data = Data;
             this.Records = Records;
         }
@@ -57,15 +55,10 @@ namespace IO.IEngage.Model
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
-        /// Gets or Sets List
-        /// </summary>
-        [DataMember(Name="list", EmitDefaultValue=false)]
-        public List<FlowFinder> List { get; set; }
-        /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public FlowFinder Data { get; set; }
+        public Sentiment Data { get; set; }
         /// <summary>
         /// Gets or Sets Records
         /// </summary>
@@ -78,10 +71,9 @@ namespace IO.IEngage.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class VerveResponseFlowFinder {\n");
+            sb.Append("class VerveResponseSentiment {\n");
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  List: ").Append(List).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Records: ").Append(Records).Append("\n");
             sb.Append("}\n");
@@ -105,15 +97,15 @@ namespace IO.IEngage.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as VerveResponseFlowFinder);
+            return this.Equals(obj as VerveResponseSentiment);
         }
 
         /// <summary>
-        /// Returns true if VerveResponseFlowFinder instances are equal
+        /// Returns true if VerveResponseSentiment instances are equal
         /// </summary>
-        /// <param name="other">Instance of VerveResponseFlowFinder to be compared</param>
+        /// <param name="other">Instance of VerveResponseSentiment to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(VerveResponseFlowFinder other)
+        public bool Equals(VerveResponseSentiment other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -129,11 +121,6 @@ namespace IO.IEngage.Model
                     this.Message == other.Message ||
                     this.Message != null &&
                     this.Message.Equals(other.Message)
-                ) && 
-                (
-                    this.List == other.List ||
-                    this.List != null &&
-                    this.List.SequenceEqual(other.List)
                 ) && 
                 (
                     this.Data == other.Data ||
@@ -162,8 +149,6 @@ namespace IO.IEngage.Model
                     hash = hash * 59 + this.StatusCode.GetHashCode();
                 if (this.Message != null)
                     hash = hash * 59 + this.Message.GetHashCode();
-                if (this.List != null)
-                    hash = hash * 59 + this.List.GetHashCode();
                 if (this.Data != null)
                     hash = hash * 59 + this.Data.GetHashCode();
                 if (this.Records != null)

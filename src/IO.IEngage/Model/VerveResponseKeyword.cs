@@ -24,20 +24,20 @@ using System.ComponentModel.DataAnnotations;
 namespace IO.IEngage.Model
 {
     /// <summary>
-    /// VerveResponseFlowFinder
+    /// VerveResponseKeyword
     /// </summary>
     [DataContract]
-    public partial class VerveResponseFlowFinder :  IEquatable<VerveResponseFlowFinder>, IValidatableObject
+    public partial class VerveResponseKeyword :  IEquatable<VerveResponseKeyword>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VerveResponseFlowFinder" /> class.
+        /// Initializes a new instance of the <see cref="VerveResponseKeyword" /> class.
         /// </summary>
         /// <param name="StatusCode">StatusCode.</param>
         /// <param name="Message">Message.</param>
         /// <param name="List">List.</param>
         /// <param name="Data">Data.</param>
         /// <param name="Records">Records.</param>
-        public VerveResponseFlowFinder(string StatusCode = null, string Message = null, List<FlowFinder> List = null, FlowFinder Data = null, long? Records = null)
+        public VerveResponseKeyword(string StatusCode = null, string Message = null, List<Keyword> List = null, Keyword Data = null, long? Records = null)
         {
             this.StatusCode = StatusCode;
             this.Message = Message;
@@ -60,12 +60,12 @@ namespace IO.IEngage.Model
         /// Gets or Sets List
         /// </summary>
         [DataMember(Name="list", EmitDefaultValue=false)]
-        public List<FlowFinder> List { get; set; }
+        public List<Keyword> List { get; set; }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public FlowFinder Data { get; set; }
+        public Keyword Data { get; set; }
         /// <summary>
         /// Gets or Sets Records
         /// </summary>
@@ -78,7 +78,7 @@ namespace IO.IEngage.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class VerveResponseFlowFinder {\n");
+            sb.Append("class VerveResponseKeyword {\n");
             sb.Append("  StatusCode: ").Append(StatusCode).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  List: ").Append(List).Append("\n");
@@ -105,15 +105,15 @@ namespace IO.IEngage.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as VerveResponseFlowFinder);
+            return this.Equals(obj as VerveResponseKeyword);
         }
 
         /// <summary>
-        /// Returns true if VerveResponseFlowFinder instances are equal
+        /// Returns true if VerveResponseKeyword instances are equal
         /// </summary>
-        /// <param name="other">Instance of VerveResponseFlowFinder to be compared</param>
+        /// <param name="other">Instance of VerveResponseKeyword to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(VerveResponseFlowFinder other)
+        public bool Equals(VerveResponseKeyword other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
