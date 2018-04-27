@@ -24,46 +24,32 @@ using System.ComponentModel.DataAnnotations;
 namespace IO.IEngage.Model
 {
     /// <summary>
-    /// Entity
+    /// TextClassification
     /// </summary>
     [DataContract]
-    public partial class Entity :  IEquatable<Entity>, IValidatableObject
+    public partial class TextClassification :  IEquatable<TextClassification>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Entity" /> class.
+        /// Initializes a new instance of the <see cref="TextClassification" /> class.
         /// </summary>
-        /// <param name="EntityId">EntityId.</param>
+        /// <param name="Confidence">Confidence.</param>
         /// <param name="Name">Name.</param>
-        /// <param name="Description">Description.</param>
-        /// <param name="Type">Type.</param>
-        public Entity(long? EntityId = null, string Name = null, string Description = null, string Type = null)
+        public TextClassification(string Confidence = null, string Name = null)
         {
-            this.EntityId = EntityId;
+            this.Confidence = Confidence;
             this.Name = Name;
-            this.Description = Description;
-            this.Type = Type;
         }
         
         /// <summary>
-        /// Gets or Sets EntityId
+        /// Gets or Sets Confidence
         /// </summary>
-        [DataMember(Name="entityId", EmitDefaultValue=false)]
-        public long? EntityId { get; set; }
+        [DataMember(Name="confidence", EmitDefaultValue=false)]
+        public string Confidence { get; set; }
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [DataMember(Name="type", EmitDefaultValue=false)]
-        public string Type { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -71,11 +57,9 @@ namespace IO.IEngage.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Entity {\n");
-            sb.Append("  EntityId: ").Append(EntityId).Append("\n");
+            sb.Append("class TextClassification {\n");
+            sb.Append("  Confidence: ").Append(Confidence).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,15 +81,15 @@ namespace IO.IEngage.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Entity);
+            return this.Equals(obj as TextClassification);
         }
 
         /// <summary>
-        /// Returns true if Entity instances are equal
+        /// Returns true if TextClassification instances are equal
         /// </summary>
-        /// <param name="other">Instance of Entity to be compared</param>
+        /// <param name="other">Instance of TextClassification to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Entity other)
+        public bool Equals(TextClassification other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -113,24 +97,14 @@ namespace IO.IEngage.Model
 
             return 
                 (
-                    this.EntityId == other.EntityId ||
-                    this.EntityId != null &&
-                    this.EntityId.Equals(other.EntityId)
+                    this.Confidence == other.Confidence ||
+                    this.Confidence != null &&
+                    this.Confidence.Equals(other.Confidence)
                 ) && 
                 (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
-                ) && 
-                (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
-                ) && 
-                (
-                    this.Type == other.Type ||
-                    this.Type != null &&
-                    this.Type.Equals(other.Type)
                 );
         }
 
@@ -145,14 +119,10 @@ namespace IO.IEngage.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.EntityId != null)
-                    hash = hash * 59 + this.EntityId.GetHashCode();
+                if (this.Confidence != null)
+                    hash = hash * 59 + this.Confidence.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
-                if (this.Type != null)
-                    hash = hash * 59 + this.Type.GetHashCode();
                 return hash;
             }
         }

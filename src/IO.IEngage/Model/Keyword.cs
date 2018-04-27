@@ -24,25 +24,25 @@ using System.ComponentModel.DataAnnotations;
 namespace IO.IEngage.Model
 {
     /// <summary>
-    /// Sentiment
+    /// Keyword
     /// </summary>
     [DataContract]
-    public partial class Sentiment :  IEquatable<Sentiment>, IValidatableObject
+    public partial class Keyword :  IEquatable<Keyword>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Sentiment" /> class.
+        /// Initializes a new instance of the <see cref="Keyword" /> class.
         /// </summary>
-        /// <param name="_Sentiment">_Sentiment.</param>
-        public Sentiment(double? _Sentiment = null)
+        /// <param name="Key">Key.</param>
+        public Keyword(string Key = null)
         {
-            this._Sentiment = _Sentiment;
+            this.Key = Key;
         }
         
         /// <summary>
-        /// Gets or Sets _Sentiment
+        /// Gets or Sets Key
         /// </summary>
-        [DataMember(Name="sentiment", EmitDefaultValue=false)]
-        public double? _Sentiment { get; set; }
+        [DataMember(Name="key", EmitDefaultValue=false)]
+        public string Key { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -50,8 +50,8 @@ namespace IO.IEngage.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Sentiment {\n");
-            sb.Append("  _Sentiment: ").Append(_Sentiment).Append("\n");
+            sb.Append("class Keyword {\n");
+            sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -73,15 +73,15 @@ namespace IO.IEngage.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Sentiment);
+            return this.Equals(obj as Keyword);
         }
 
         /// <summary>
-        /// Returns true if Sentiment instances are equal
+        /// Returns true if Keyword instances are equal
         /// </summary>
-        /// <param name="other">Instance of Sentiment to be compared</param>
+        /// <param name="other">Instance of Keyword to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Sentiment other)
+        public bool Equals(Keyword other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -89,9 +89,9 @@ namespace IO.IEngage.Model
 
             return 
                 (
-                    this._Sentiment == other._Sentiment ||
-                    this._Sentiment != null &&
-                    this._Sentiment.Equals(other._Sentiment)
+                    this.Key == other.Key ||
+                    this.Key != null &&
+                    this.Key.Equals(other.Key)
                 );
         }
 
@@ -106,8 +106,8 @@ namespace IO.IEngage.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this._Sentiment != null)
-                    hash = hash * 59 + this._Sentiment.GetHashCode();
+                if (this.Key != null)
+                    hash = hash * 59 + this.Key.GetHashCode();
                 return hash;
             }
         }

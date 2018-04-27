@@ -24,46 +24,39 @@ using System.ComponentModel.DataAnnotations;
 namespace IO.IEngage.Model
 {
     /// <summary>
-    /// Entity
+    /// EntitiesClassified
     /// </summary>
     [DataContract]
-    public partial class Entity :  IEquatable<Entity>, IValidatableObject
+    public partial class EntitiesClassified :  IEquatable<EntitiesClassified>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Entity" /> class.
+        /// Initializes a new instance of the <see cref="EntitiesClassified" /> class.
         /// </summary>
-        /// <param name="EntityId">EntityId.</param>
-        /// <param name="Name">Name.</param>
-        /// <param name="Description">Description.</param>
-        /// <param name="Type">Type.</param>
-        public Entity(long? EntityId = null, string Name = null, string Description = null, string Type = null)
+        /// <param name="Serial">Serial.</param>
+        /// <param name="_Object">_Object.</param>
+        /// <param name="Entity">Entity.</param>
+        public EntitiesClassified(int? Serial = null, string _Object = null, string Entity = null)
         {
-            this.EntityId = EntityId;
-            this.Name = Name;
-            this.Description = Description;
-            this.Type = Type;
+            this.Serial = Serial;
+            this._Object = _Object;
+            this.Entity = Entity;
         }
         
         /// <summary>
-        /// Gets or Sets EntityId
+        /// Gets or Sets Serial
         /// </summary>
-        [DataMember(Name="entityId", EmitDefaultValue=false)]
-        public long? EntityId { get; set; }
+        [DataMember(Name="serial", EmitDefaultValue=false)]
+        public int? Serial { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets _Object
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
         /// <summary>
-        /// Gets or Sets Description
+        /// Gets or Sets Entity
         /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [DataMember(Name="type", EmitDefaultValue=false)]
-        public string Type { get; set; }
+        [DataMember(Name="entity", EmitDefaultValue=false)]
+        public string Entity { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -71,11 +64,10 @@ namespace IO.IEngage.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Entity {\n");
-            sb.Append("  EntityId: ").Append(EntityId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class EntitiesClassified {\n");
+            sb.Append("  Serial: ").Append(Serial).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  Entity: ").Append(Entity).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,15 +89,15 @@ namespace IO.IEngage.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Entity);
+            return this.Equals(obj as EntitiesClassified);
         }
 
         /// <summary>
-        /// Returns true if Entity instances are equal
+        /// Returns true if EntitiesClassified instances are equal
         /// </summary>
-        /// <param name="other">Instance of Entity to be compared</param>
+        /// <param name="other">Instance of EntitiesClassified to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Entity other)
+        public bool Equals(EntitiesClassified other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -113,24 +105,19 @@ namespace IO.IEngage.Model
 
             return 
                 (
-                    this.EntityId == other.EntityId ||
-                    this.EntityId != null &&
-                    this.EntityId.Equals(other.EntityId)
+                    this.Serial == other.Serial ||
+                    this.Serial != null &&
+                    this.Serial.Equals(other.Serial)
                 ) && 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
+                    this._Object == other._Object ||
+                    this._Object != null &&
+                    this._Object.Equals(other._Object)
                 ) && 
                 (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
-                ) && 
-                (
-                    this.Type == other.Type ||
-                    this.Type != null &&
-                    this.Type.Equals(other.Type)
+                    this.Entity == other.Entity ||
+                    this.Entity != null &&
+                    this.Entity.Equals(other.Entity)
                 );
         }
 
@@ -145,14 +132,12 @@ namespace IO.IEngage.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.EntityId != null)
-                    hash = hash * 59 + this.EntityId.GetHashCode();
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
-                if (this.Type != null)
-                    hash = hash * 59 + this.Type.GetHashCode();
+                if (this.Serial != null)
+                    hash = hash * 59 + this.Serial.GetHashCode();
+                if (this._Object != null)
+                    hash = hash * 59 + this._Object.GetHashCode();
+                if (this.Entity != null)
+                    hash = hash * 59 + this.Entity.GetHashCode();
                 return hash;
             }
         }
