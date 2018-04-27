@@ -1,6 +1,6 @@
 # IO.IEngage.Api.InteractionApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -40,11 +40,11 @@ Method | HTTP request | Description
 
 <a name="addinteraction"></a>
 # **AddInteraction**
-> VerveResponseInteraction AddInteraction (string interactionTitle, string loggedInUserId, string accessToken, string clientToken, long? categoryId = null, string interactionType = null, string interactionDescription = null, string association = null)
+> VerveResponseInteraction AddInteraction (string requesterId, string clientToken, InteractionInputModel body = null, string accessToken = null)
 
 Share interaction without attachment
 
-Allows the user to share interaction without attachment. Returns the interaction object
+This service allows a user to post an interaction. The following fields(key:value) are required to be present in the Interaction JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. interactionTitle </br>
 
 ### Example
 ```csharp
@@ -65,19 +65,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var interactionTitle = interactionTitle_example;  // string | Interaction Title
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var categoryId = 789;  // long? | categoryId (optional) 
-            var interactionType = interactionType_example;  // string | Interaction Type (optional) 
-            var interactionDescription = interactionDescription_example;  // string | Describe interaction (optional) 
-            var association = association_example;  // string | association (optional) 
+            var body = new InteractionInputModel(); // InteractionInputModel |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Share interaction without attachment
-                VerveResponseInteraction result = apiInstance.AddInteraction(interactionTitle, loggedInUserId, accessToken, clientToken, categoryId, interactionType, interactionDescription, association);
+                VerveResponseInteraction result = apiInstance.AddInteraction(requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -93,14 +89,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **interactionTitle** | **string**| Interaction Title | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **categoryId** | **long?**| categoryId | [optional] 
- **interactionType** | **string**| Interaction Type | [optional] 
- **interactionDescription** | **string**| Describe interaction | [optional] 
- **association** | **string**| association | [optional] 
+ **body** | [**InteractionInputModel**](InteractionInputModel.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -112,14 +104,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="addinteraction_0"></a>
 # **AddInteraction_0**
-> VerveResponseInteraction AddInteraction_0 (string body3, string loggedInUserId, string accessToken, string clientToken, long? body = null, string body2 = null, string body4 = null, string body5 = null, List<Attachment> body6 = null)
+> VerveResponseInteraction AddInteraction_0 (string interactionTitle, System.IO.Stream file, string requesterId, string clientToken, string categoryId = null, string interactionType = null, string interactionDescription = null, string association = null, string accessToken = null)
 
 Share interaction with attachment
 
@@ -144,20 +136,20 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var body3 = body_example;  // string | interactionTitle
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var interactionTitle = interactionTitle_example;  // string | interactionTitle
+            var file = /path/to/file.txt;  // System.IO.Stream | file
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var body = 789;  // long? | categoryId (optional) 
-            var body2 = body_example;  // string | Interaction Type (optional) 
-            var body4 = body_example;  // string | interactionDescription (optional) 
-            var body5 = body_example;  // string | association (optional) 
-            var body6 = new List<Attachment>(); // List<Attachment> |  (optional) 
+            var categoryId = categoryId_example;  // string | categoryId (optional) 
+            var interactionType = interactionType_example;  // string | interactionType (optional) 
+            var interactionDescription = interactionDescription_example;  // string | interactionDescription (optional) 
+            var association = association_example;  // string | association (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Share interaction with attachment
-                VerveResponseInteraction result = apiInstance.AddInteraction_0(body3, loggedInUserId, accessToken, clientToken, body, body2, body4, body5, body6);
+                VerveResponseInteraction result = apiInstance.AddInteraction_0(interactionTitle, file, requesterId, clientToken, categoryId, interactionType, interactionDescription, association, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -173,15 +165,15 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body3** | **string**| interactionTitle | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **interactionTitle** | **string**| interactionTitle | 
+ **file** | **System.IO.Stream****System.IO.Stream**| file | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **body** | **long?**| categoryId | [optional] 
- **body2** | **string**| Interaction Type | [optional] 
- **body4** | **string**| interactionDescription | [optional] 
- **body5** | **string**| association | [optional] 
- **body6** | [**List&lt;Attachment&gt;**](Attachment.md)|  | [optional] 
+ **categoryId** | **string**| categoryId | [optional] 
+ **interactionType** | **string**| interactionType | [optional] 
+ **interactionDescription** | **string**| interactionDescription | [optional] 
+ **association** | **string**| association | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -200,11 +192,11 @@ Name | Type | Description  | Notes
 
 <a name="addresponse"></a>
 # **AddResponse**
-> VerveResponseInteractionResponse AddResponse (long? interactionId, string response, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse AddResponse (long? interactionId, string requesterId, string clientToken, InteractionResponse body = null, string accessToken = null)
 
 Response the specified interaction
 
-Allows the user to response the interaction
+This service allows a user to post a response on an interaction. The following fields(key:value) are required to be present in the Response JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. interactionId (Path Parameter)</br>2. responseDescription </br>
 
 ### Example
 ```csharp
@@ -226,16 +218,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
-            var response = response_example;  // string | response
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var body = new InteractionResponse(); // InteractionResponse |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Response the specified interaction
-                VerveResponseInteractionResponse result = apiInstance.AddResponse(interactionId, response, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.AddResponse(interactionId, requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -252,11 +243,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
- **response** | **string**| response | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **body** | [**InteractionResponse**](InteractionResponse.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -268,14 +258,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="changeinteractioncategory"></a>
 # **ChangeInteractionCategory**
-> VerveResponseInteraction ChangeInteractionCategory (long? interactionId, long? categoryId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteraction ChangeInteractionCategory (long? interactionId, long? categoryId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Change interaction category
 
@@ -302,15 +292,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var categoryId = 789;  // long? | New interaction categoryId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Change interaction category
-                VerveResponseInteraction result = apiInstance.ChangeInteractionCategory(interactionId, categoryId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteraction result = apiInstance.ChangeInteractionCategory(interactionId, categoryId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -328,10 +318,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **categoryId** | **long?**| New interaction categoryId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -350,7 +340,7 @@ Name | Type | Description  | Notes
 
 <a name="changeinteractiontype"></a>
 # **ChangeInteractionType**
-> VerveResponseInteraction ChangeInteractionType (long? interactionId, string interactionType, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteraction ChangeInteractionType (long? interactionId, string interactionType, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Change interaction type
 
@@ -377,15 +367,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var interactionType = interactionType_example;  // string | New interaction type
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Change interaction type
-                VerveResponseInteraction result = apiInstance.ChangeInteractionType(interactionId, interactionType, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteraction result = apiInstance.ChangeInteractionType(interactionId, interactionType, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -403,10 +393,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **interactionType** | **string**| New interaction type | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -425,11 +415,11 @@ Name | Type | Description  | Notes
 
 <a name="createinteractioncategory"></a>
 # **CreateInteractionCategory**
-> VerveResponseInteractionCategory CreateInteractionCategory (string interactionType, string name, string loggedInUserId, string accessToken, string clientToken, long? associationId = null, string description = null, string fields = null)
+> VerveResponseInteractionCategory CreateInteractionCategory (string requesterId, string clientToken, InteractionCategory body = null, string accessToken = null)
 
 Create interaction category
 
-Creates a interaction category. Returns the created interaction category
+This service allows a user to create a category. The following fields(key:value) are required to be present in the Category JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. associationId </br>2. categoryName </br>3. interactionType </br>
 
 ### Example
 ```csharp
@@ -450,19 +440,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var interactionType = interactionType_example;  // string | Interaction Type
-            var name = name_example;  // string | Name
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var associationId = 789;  // long? | associationId (optional) 
-            var description = description_example;  // string | description (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var body = new InteractionCategory(); // InteractionCategory |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Create interaction category
-                VerveResponseInteractionCategory result = apiInstance.CreateInteractionCategory(interactionType, name, loggedInUserId, accessToken, clientToken, associationId, description, fields);
+                VerveResponseInteractionCategory result = apiInstance.CreateInteractionCategory(requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -478,14 +464,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **interactionType** | **string**| Interaction Type | 
- **name** | **string**| Name | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **associationId** | **long?**| associationId | [optional] 
- **description** | **string**| description | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **body** | [**InteractionCategory**](InteractionCategory.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -497,14 +479,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="deleteinteraction"></a>
 # **DeleteInteraction**
-> VerveResponseInteraction DeleteInteraction (long? interactionId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteraction DeleteInteraction (long? interactionId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Delete interaction
 
@@ -530,15 +512,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete interaction
-                VerveResponseInteraction result = apiInstance.DeleteInteraction(interactionId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteraction result = apiInstance.DeleteInteraction(interactionId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -555,10 +537,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -577,7 +559,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteinteractioncategory"></a>
 # **DeleteInteractionCategory**
-> VerveResponseInteractionCategory DeleteInteractionCategory (long? categoryId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionCategory DeleteInteractionCategory (long? categoryId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Delete interaction category
 
@@ -603,15 +585,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var categoryId = 789;  // long? | categoryId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete interaction category
-                VerveResponseInteractionCategory result = apiInstance.DeleteInteractionCategory(categoryId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionCategory result = apiInstance.DeleteInteractionCategory(categoryId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -628,10 +610,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **categoryId** | **long?**| categoryId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -650,7 +632,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteresponse"></a>
 # **DeleteResponse**
-> VerveResponseInteractionResponse DeleteResponse (long? responseId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse DeleteResponse (long? responseId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Delete response
 
@@ -676,15 +658,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var responseId = 789;  // long? | responseId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete response
-                VerveResponseInteractionResponse result = apiInstance.DeleteResponse(responseId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.DeleteResponse(responseId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -701,10 +683,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **responseId** | **long?**| responseId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -723,7 +705,7 @@ Name | Type | Description  | Notes
 
 <a name="dislikeresponse"></a>
 # **DislikeResponse**
-> VerveResponseInteractionResponse DislikeResponse (long? interactionId, long? responseId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse DislikeResponse (long? interactionId, long? responseId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Dislike response
 
@@ -750,15 +732,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var responseId = 789;  // long? | responseId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Dislike response
-                VerveResponseInteractionResponse result = apiInstance.DislikeResponse(interactionId, responseId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.DislikeResponse(interactionId, responseId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -776,10 +758,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **responseId** | **long?**| responseId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -798,7 +780,7 @@ Name | Type | Description  | Notes
 
 <a name="getfriendsinteractions"></a>
 # **GetFriendsInteractions**
-> VerveResponseInteractionList GetFriendsInteractions (string interactionStatus, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string interactionType = null, long? categoryId = null, string association = null, string fields = null)
+> VerveResponseInteractionList GetFriendsInteractions (string interactionStatus, int? start, int? end, string requesterId, string clientToken, string interactionType = null, long? categoryId = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of interactions shared by friends
 
@@ -826,18 +808,18 @@ namespace Example
             var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var categoryId = 789;  // long? | categoryId (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of interactions shared by friends
-                VerveResponseInteractionList result = apiInstance.GetFriendsInteractions(interactionStatus, start, end, loggedInUserId, accessToken, clientToken, interactionType, categoryId, association, fields);
+                VerveResponseInteractionList result = apiInstance.GetFriendsInteractions(interactionStatus, start, end, requesterId, clientToken, interactionType, categoryId, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -856,13 +838,13 @@ Name | Type | Description  | Notes
  **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **categoryId** | **long?**| categoryId | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -881,7 +863,7 @@ Name | Type | Description  | Notes
 
 <a name="getinteraction"></a>
 # **GetInteraction**
-> VerveResponseInteraction GetInteraction (long? interactionId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteraction GetInteraction (long? interactionId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get interaction by id
 
@@ -907,15 +889,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get interaction by id
-                VerveResponseInteraction result = apiInstance.GetInteraction(interactionId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteraction result = apiInstance.GetInteraction(interactionId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -932,10 +914,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -954,7 +936,7 @@ Name | Type | Description  | Notes
 
 <a name="getinteractioncategories"></a>
 # **GetInteractionCategories**
-> VerveResponseInteractionCategoryList GetInteractionCategories (int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionCategoryList GetInteractionCategories (int? start, int? end, string requesterId, string clientToken, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get the list of interaction categories
 
@@ -981,17 +963,17 @@ namespace Example
             var apiInstance = new InteractionApi();
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get the list of interaction categories
-                VerveResponseInteractionCategoryList result = apiInstance.GetInteractionCategories(start, end, loggedInUserId, accessToken, clientToken, interactionType, association, fields);
+                VerveResponseInteractionCategoryList result = apiInstance.GetInteractionCategories(start, end, requesterId, clientToken, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1009,12 +991,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1033,7 +1015,7 @@ Name | Type | Description  | Notes
 
 <a name="getinteractionsforuser"></a>
 # **GetInteractionsForUser**
-> VerveResponseInteractionList GetInteractionsForUser (string interactionStatus, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, long? categoryId = null, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionList GetInteractionsForUser (string interactionStatus, int? start, int? end, string requesterId, string clientToken, long? categoryId = null, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of all interactions visible to the user
 
@@ -1061,18 +1043,18 @@ namespace Example
             var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var categoryId = 789;  // long? | categoryId (optional) 
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of all interactions visible to the user
-                VerveResponseInteractionList result = apiInstance.GetInteractionsForUser(interactionStatus, start, end, loggedInUserId, accessToken, clientToken, categoryId, interactionType, association, fields);
+                VerveResponseInteractionList result = apiInstance.GetInteractionsForUser(interactionStatus, start, end, requesterId, clientToken, categoryId, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1091,13 +1073,13 @@ Name | Type | Description  | Notes
  **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **categoryId** | **long?**| categoryId | [optional] 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1116,7 +1098,7 @@ Name | Type | Description  | Notes
 
 <a name="getrecommendinteractions"></a>
 # **GetRecommendInteractions**
-> VerveResponseInteractionList GetRecommendInteractions (int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionList GetRecommendInteractions (int? start, int? end, string requesterId, string clientToken, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of recommended interactions
 
@@ -1143,17 +1125,17 @@ namespace Example
             var apiInstance = new InteractionApi();
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | interactionType (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of recommended interactions
-                VerveResponseInteractionList result = apiInstance.GetRecommendInteractions(start, end, loggedInUserId, accessToken, clientToken, interactionType, association, fields);
+                VerveResponseInteractionList result = apiInstance.GetRecommendInteractions(start, end, requesterId, clientToken, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1171,12 +1153,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| interactionType | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1195,7 +1177,7 @@ Name | Type | Description  | Notes
 
 <a name="getrecommendedinteractinsfromdb"></a>
 # **GetRecommendedInteractinsFromDB**
-> VerveResponseInteractionList GetRecommendedInteractinsFromDB (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionList GetRecommendedInteractinsFromDB (long? userId, int? start, int? end, string requesterId, string clientToken, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of recommended interactions from DB
 
@@ -1220,20 +1202,20 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose recommended interactions want to get
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of recommended interactions from DB
-                VerveResponseInteractionList result = apiInstance.GetRecommendedInteractinsFromDB(userId, start, end, loggedInUserId, accessToken, clientToken, interactionType, association, fields);
+                VerveResponseInteractionList result = apiInstance.GetRecommendedInteractinsFromDB(userId, start, end, requesterId, clientToken, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1249,15 +1231,15 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose recommended interactions want to get | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1276,7 +1258,7 @@ Name | Type | Description  | Notes
 
 <a name="getrecommendedusersfromdb"></a>
 # **GetRecommendedUsersFromDB**
-> VerveResponseUserList GetRecommendedUsersFromDB (long? interactionId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string association = null, string fields = null)
+> VerveResponseUserList GetRecommendedUsersFromDB (long? interactionId, int? start, int? end, string requesterId, string clientToken, string association = null, string fields = null, string accessToken = null)
 
 Get list of recommended Users from DB
 
@@ -1304,16 +1286,16 @@ namespace Example
             var interactionId = 789;  // long? | interactionId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/>7)currentUserFollowing<br/>8)currentUserFriend<br/>9)equityScore (optional)  (default to userId,firstName,lastName)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of recommended Users from DB
-                VerveResponseUserList result = apiInstance.GetRecommendedUsersFromDB(interactionId, start, end, loggedInUserId, accessToken, clientToken, association, fields);
+                VerveResponseUserList result = apiInstance.GetRecommendedUsersFromDB(interactionId, start, end, requesterId, clientToken, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1332,11 +1314,11 @@ Name | Type | Description  | Notes
  **interactionId** | **long?**| interactionId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)currentUserFriend&lt;br/&gt;9)equityScore | [optional] [default to userId,firstName,lastName]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1355,7 +1337,7 @@ Name | Type | Description  | Notes
 
 <a name="getresponses"></a>
 # **GetResponses**
-> VerveResponseInteractionResponseList GetResponses (long? interactionId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponseList GetResponses (long? interactionId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of responses by interactionId
 
@@ -1383,15 +1365,15 @@ namespace Example
             var interactionId = 789;  // long? | interactionId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of responses by interactionId
-                VerveResponseInteractionResponseList result = apiInstance.GetResponses(interactionId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponseList result = apiInstance.GetResponses(interactionId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1410,10 +1392,10 @@ Name | Type | Description  | Notes
  **interactionId** | **long?**| interactionId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1432,7 +1414,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserinteractions"></a>
 # **GetUserInteractions**
-> VerveResponseInteractionList GetUserInteractions (long? userId, string interactionStatus, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, long? categoryId = null, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionList GetUserInteractions (long? userId, string interactionStatus, int? start, int? end, string requesterId, string clientToken, long? categoryId = null, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of interactions shared by user
 
@@ -1457,22 +1439,22 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | userId whose shared interactions want to get
             var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var categoryId = 789;  // long? | categoryId (optional) 
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of interactions shared by user
-                VerveResponseInteractionList result = apiInstance.GetUserInteractions(userId, interactionStatus, start, end, loggedInUserId, accessToken, clientToken, categoryId, interactionType, association, fields);
+                VerveResponseInteractionList result = apiInstance.GetUserInteractions(userId, interactionStatus, start, end, requesterId, clientToken, categoryId, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1488,17 +1470,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| userId whose shared interactions want to get | 
  **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **categoryId** | **long?**| categoryId | [optional] 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1517,7 +1499,7 @@ Name | Type | Description  | Notes
 
 <a name="getusersubscribedinteractioncategories"></a>
 # **GetUserSubscribedInteractionCategories**
-> VerveResponseInteractionCategoryList GetUserSubscribedInteractionCategories (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionCategoryList GetUserSubscribedInteractionCategories (long? userId, int? start, int? end, string requesterId, string clientToken, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of interaction categories subscribed by the user
 
@@ -1542,20 +1524,20 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose subcripbed category want to get
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | interactionType (optional) 
             var association = association_example;  // string | association (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of interaction categories subscribed by the user
-                VerveResponseInteractionCategoryList result = apiInstance.GetUserSubscribedInteractionCategories(userId, start, end, loggedInUserId, accessToken, clientToken, interactionType, association, fields);
+                VerveResponseInteractionCategoryList result = apiInstance.GetUserSubscribedInteractionCategories(userId, start, end, requesterId, clientToken, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1571,15 +1553,15 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose subcripbed category want to get | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| interactionType | [optional] 
  **association** | **string**| association | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1598,7 +1580,7 @@ Name | Type | Description  | Notes
 
 <a name="getusersubscribedinteractions"></a>
 # **GetUserSubscribedInteractions**
-> VerveResponseInteractionList GetUserSubscribedInteractions (long? userId, string interactionStatus, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, long? categoryId = null, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionList GetUserSubscribedInteractions (long? userId, string interactionStatus, int? start, int? end, string requesterId, string clientToken, long? categoryId = null, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of interactions subscribed by user
 
@@ -1623,22 +1605,22 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose subcribed interactions wants to get
             var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var categoryId = 789;  // long? | categoryId (optional) 
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of interactions subscribed by user
-                VerveResponseInteractionList result = apiInstance.GetUserSubscribedInteractions(userId, interactionStatus, start, end, loggedInUserId, accessToken, clientToken, categoryId, interactionType, association, fields);
+                VerveResponseInteractionList result = apiInstance.GetUserSubscribedInteractions(userId, interactionStatus, start, end, requesterId, clientToken, categoryId, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1654,17 +1636,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose subcribed interactions wants to get | 
  **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **categoryId** | **long?**| categoryId | [optional] 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1683,7 +1665,7 @@ Name | Type | Description  | Notes
 
 <a name="likeresponse"></a>
 # **LikeResponse**
-> VerveResponseInteractionResponse LikeResponse (long? interactionId, long? responseId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse LikeResponse (long? interactionId, long? responseId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Like response
 
@@ -1710,15 +1692,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var responseId = 789;  // long? | responseId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Like response
-                VerveResponseInteractionResponse result = apiInstance.LikeResponse(interactionId, responseId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.LikeResponse(interactionId, responseId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1736,10 +1718,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **responseId** | **long?**| responseId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1758,7 +1740,7 @@ Name | Type | Description  | Notes
 
 <a name="markasanresponse"></a>
 # **MarkAsAnResponse**
-> VerveResponseInteractionResponse MarkAsAnResponse (long? interactionId, long? responseId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse MarkAsAnResponse (long? interactionId, long? responseId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Mark response as a response
 
@@ -1785,15 +1767,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var responseId = 789;  // long? | responseId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Mark response as a response
-                VerveResponseInteractionResponse result = apiInstance.MarkAsAnResponse(interactionId, responseId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.MarkAsAnResponse(interactionId, responseId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1811,10 +1793,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **responseId** | **long?**| responseId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1833,7 +1815,7 @@ Name | Type | Description  | Notes
 
 <a name="searchinteractions"></a>
 # **SearchInteractions**
-> VerveResponseInteractionList SearchInteractions (string searchText, string interactionStatus, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string interactionType = null, string association = null, string fields = null)
+> VerveResponseInteractionList SearchInteractions (string searchText, string interactionStatus, int? start, int? end, string requesterId, string clientToken, string interactionType = null, string association = null, string fields = null, string accessToken = null)
 
 Get list of matching interactions
 
@@ -1862,17 +1844,17 @@ namespace Example
             var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of matching interactions
-                VerveResponseInteractionList result = apiInstance.SearchInteractions(searchText, interactionStatus, start, end, loggedInUserId, accessToken, clientToken, interactionType, association, fields);
+                VerveResponseInteractionList result = apiInstance.SearchInteractions(searchText, interactionStatus, start, end, requesterId, clientToken, interactionType, association, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1892,12 +1874,12 @@ Name | Type | Description  | Notes
  **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1916,7 +1898,7 @@ Name | Type | Description  | Notes
 
 <a name="subscribeinteractincategory"></a>
 # **SubscribeInteractinCategory**
-> VerveResponseInteractionCategory SubscribeInteractinCategory (long? categoryId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionCategory SubscribeInteractinCategory (long? categoryId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Subscribe interaction category
 
@@ -1942,15 +1924,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var categoryId = 789;  // long? | categoryId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Subscribe interaction category
-                VerveResponseInteractionCategory result = apiInstance.SubscribeInteractinCategory(categoryId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionCategory result = apiInstance.SubscribeInteractinCategory(categoryId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1967,10 +1949,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **categoryId** | **long?**| categoryId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1989,7 +1971,7 @@ Name | Type | Description  | Notes
 
 <a name="subscribeinteraction"></a>
 # **SubscribeInteraction**
-> VerveResponseInteraction SubscribeInteraction (long? interactionId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteraction SubscribeInteraction (long? interactionId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Subscribe interaction
 
@@ -2015,15 +1997,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Subscribe interaction
-                VerveResponseInteraction result = apiInstance.SubscribeInteraction(interactionId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteraction result = apiInstance.SubscribeInteraction(interactionId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2040,10 +2022,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -2062,7 +2044,7 @@ Name | Type | Description  | Notes
 
 <a name="unmarkasanresponse"></a>
 # **UnmarkAsAnResponse**
-> VerveResponseInteractionResponse UnmarkAsAnResponse (long? interactionId, long? responseId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse UnmarkAsAnResponse (long? interactionId, long? responseId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Unmark response as a response
 
@@ -2089,15 +2071,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var responseId = 789;  // long? | responseId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unmark response as a response
-                VerveResponseInteractionResponse result = apiInstance.UnmarkAsAnResponse(interactionId, responseId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.UnmarkAsAnResponse(interactionId, responseId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2115,10 +2097,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **responseId** | **long?**| responseId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -2137,7 +2119,7 @@ Name | Type | Description  | Notes
 
 <a name="unsubscribeinteractincategory"></a>
 # **UnsubscribeInteractinCategory**
-> VerveResponseInteractionCategory UnsubscribeInteractinCategory (long? categoryId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionCategory UnsubscribeInteractinCategory (long? categoryId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Unsubscribe interaction category
 
@@ -2163,15 +2145,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var categoryId = 789;  // long? | categoryId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unsubscribe interaction category
-                VerveResponseInteractionCategory result = apiInstance.UnsubscribeInteractinCategory(categoryId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionCategory result = apiInstance.UnsubscribeInteractinCategory(categoryId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2188,10 +2170,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **categoryId** | **long?**| categoryId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -2210,7 +2192,7 @@ Name | Type | Description  | Notes
 
 <a name="unsubscribeinteraction"></a>
 # **UnsubscribeInteraction**
-> VerveResponseInteraction UnsubscribeInteraction (long? interactionId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteraction UnsubscribeInteraction (long? interactionId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Unsubscribe interaction
 
@@ -2236,15 +2218,15 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unsubscribe interaction
-                VerveResponseInteraction result = apiInstance.UnsubscribeInteraction(interactionId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteraction result = apiInstance.UnsubscribeInteraction(interactionId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2261,10 +2243,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -2283,7 +2265,7 @@ Name | Type | Description  | Notes
 
 <a name="updateinteraction"></a>
 # **UpdateInteraction**
-> VerveResponseInteraction UpdateInteraction (long? interactionId, string interactionTitle, string loggedInUserId, string accessToken, string clientToken, string interactionDescription = null, string fields = null)
+> VerveResponseInteraction UpdateInteraction (long? interactionId, string interactionTitle, string requesterId, string clientToken, string interactionDescription = null, string fields = null, string accessToken = null)
 
 Update interaction
 
@@ -2310,16 +2292,16 @@ namespace Example
             var apiInstance = new InteractionApi();
             var interactionId = 789;  // long? | interactionId
             var interactionTitle = interactionTitle_example;  // string | Interaction Title
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionDescription = interactionDescription_example;  // string | Describe Interaction (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update interaction
-                VerveResponseInteraction result = apiInstance.UpdateInteraction(interactionId, interactionTitle, loggedInUserId, accessToken, clientToken, interactionDescription, fields);
+                VerveResponseInteraction result = apiInstance.UpdateInteraction(interactionId, interactionTitle, requesterId, clientToken, interactionDescription, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2337,11 +2319,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionId** | **long?**| interactionId | 
  **interactionTitle** | **string**| Interaction Title | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionDescription** | **string**| Describe Interaction | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -2360,7 +2342,7 @@ Name | Type | Description  | Notes
 
 <a name="updateinteractioncategory"></a>
 # **UpdateInteractionCategory**
-> VerveResponseInteractionCategory UpdateInteractionCategory (long? categoryId, string categoryName, string loggedInUserId, string accessToken, string clientToken, string categoryDescription = null, string fields = null)
+> VerveResponseInteractionCategory UpdateInteractionCategory (long? categoryId, string categoryName, string requesterId, string clientToken, string categoryDescription = null, string fields = null, string accessToken = null)
 
 Update interaction category
 
@@ -2387,16 +2369,16 @@ namespace Example
             var apiInstance = new InteractionApi();
             var categoryId = 789;  // long? | categoryId
             var categoryName = categoryName_example;  // string | Category Name
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var categoryDescription = categoryDescription_example;  // string | Describe category (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update interaction category
-                VerveResponseInteractionCategory result = apiInstance.UpdateInteractionCategory(categoryId, categoryName, loggedInUserId, accessToken, clientToken, categoryDescription, fields);
+                VerveResponseInteractionCategory result = apiInstance.UpdateInteractionCategory(categoryId, categoryName, requesterId, clientToken, categoryDescription, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2414,11 +2396,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **categoryId** | **long?**| categoryId | 
  **categoryName** | **string**| Category Name | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **categoryDescription** | **string**| Describe category | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -2437,7 +2419,7 @@ Name | Type | Description  | Notes
 
 <a name="updateresponse"></a>
 # **UpdateResponse**
-> VerveResponseInteractionResponse UpdateResponse (long? responseId, string response, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseInteractionResponse UpdateResponse (long? responseId, string response, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Update response
 
@@ -2464,15 +2446,15 @@ namespace Example
             var apiInstance = new InteractionApi();
             var responseId = 789;  // long? | responseId
             var response = response_example;  // string | response
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update response
-                VerveResponseInteractionResponse result = apiInstance.UpdateResponse(responseId, response, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseInteractionResponse result = apiInstance.UpdateResponse(responseId, response, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2490,10 +2472,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **responseId** | **long?**| responseId | 
  **response** | **string**| response | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

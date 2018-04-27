@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **MilestoneName** | **string** |  | [optional] 
 **GroupType** | **string** |  | [optional] 
 **GroupName** | **string** |  | [optional] 
+**AssigneeUserId** | **long?** |  | [optional] 
+**NeverDue** | **bool?** |  | [optional] [default to false]
+**User** | [**User**](User.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

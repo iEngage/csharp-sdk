@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **IsClosed** | **bool?** |  | [optional] [default to false]
 **CreatedDate** | **DateTime?** |  | [optional] 
 **LastUpdatedDate** | **DateTime?** |  | [optional] 
+**Association** | **string** |  | [optional] 
 **VideoId** | **string** |  | [optional] 
 **FileURL** | **string** |  | [optional] 
 **FileEntityName** | **string** |  | [optional] 
@@ -23,6 +24,7 @@ Name | Type | Description | Notes
 **AttachmentList** | [**List&lt;Multimedia&gt;**](Multimedia.md) |  | [optional] 
 **CategoryId** | **long?** |  | [optional] 
 **CategoryName** | **string** |  | [optional] 
+**Score** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

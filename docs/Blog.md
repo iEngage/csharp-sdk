@@ -4,10 +4,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BlogId** | **long?** |  | [optional] 
-**User** | [**User**](User.md) |  | [optional] 
 **Title** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
+**User** | [**User**](User.md) |  | [optional] 
 **CreationTime** | **DateTime?** |  | [optional] 
+**Association** | **long?** |  | [optional] 
 **Sentiment** | **string** |  | [optional] 
 **SentimentDetails** | [**Sentiment**](Sentiment.md) |  | [optional] 
 **SentimentWeightage** | **double?** |  | [optional] 

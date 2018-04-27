@@ -1,6 +1,6 @@
 # IO.IEngage.Api.BPMApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="assignwftask"></a>
 # **AssignWFTask**
-> VerveResponseWFTask AssignWFTask (long? assigneeUserId, long? taskId, string loggedInUserId, string accessToken, string clientToken, string comment = null, long? dueDate = null, string fields = null)
+> VerveResponseWFTask AssignWFTask (long? assigneeUserId, long? taskId, string requesterId, string clientToken, string comment = null, long? dueDate = null, string fields = null, string accessToken = null)
 
 Assign task
 
@@ -42,17 +42,17 @@ namespace Example
             var apiInstance = new BPMApi();
             var assigneeUserId = 789;  // long? | assigneeUserId - assign to this user
             var taskId = 789;  // long? | taskId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var comment = comment_example;  // string | comment (optional) 
             var dueDate = 789;  // long? | dueDate (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Assign task
-                VerveResponseWFTask result = apiInstance.AssignWFTask(assigneeUserId, taskId, loggedInUserId, accessToken, clientToken, comment, dueDate, fields);
+                VerveResponseWFTask result = apiInstance.AssignWFTask(assigneeUserId, taskId, requesterId, clientToken, comment, dueDate, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -70,12 +70,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **assigneeUserId** | **long?**| assigneeUserId - assign to this user | 
  **taskId** | **long?**| taskId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **comment** | **string**| comment | [optional] 
  **dueDate** | **long?**| dueDate | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 <a name="completewftask"></a>
 # **CompleteWFTask**
-> VerveResponseWFTask CompleteWFTask (long? userId, long? taskId, string loggedInUserId, string accessToken, string clientToken, string transition = null, string comment = null, string fields = null)
+> VerveResponseWFTask CompleteWFTask (long? userId, long? taskId, string requesterId, string clientToken, string transition = null, string comment = null, string fields = null, string accessToken = null)
 
 Complete task
 
@@ -121,17 +121,17 @@ namespace Example
             var apiInstance = new BPMApi();
             var userId = 789;  // long? | userId whose task want to complete
             var taskId = 789;  // long? | taskId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var transition = transition_example;  // string | transition (optional) 
             var comment = comment_example;  // string | comment (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Complete task
-                VerveResponseWFTask result = apiInstance.CompleteWFTask(userId, taskId, loggedInUserId, accessToken, clientToken, transition, comment, fields);
+                VerveResponseWFTask result = apiInstance.CompleteWFTask(userId, taskId, requesterId, clientToken, transition, comment, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -149,12 +149,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| userId whose task want to complete | 
  **taskId** | **long?**| taskId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **transition** | **string**| transition | [optional] 
  **comment** | **string**| comment | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 
 <a name="getbpmtasks"></a>
 # **GetBPMTasks**
-> VerveResponseWFTask GetBPMTasks (long? userId, long? taskId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseWFTask GetBPMTasks (long? userId, long? taskId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get task by task id
 
@@ -200,15 +200,15 @@ namespace Example
             var apiInstance = new BPMApi();
             var userId = 789;  // long? | userId
             var taskId = 789;  // long? | taskId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get task by task id
-                VerveResponseWFTask result = apiInstance.GetBPMTasks(userId, taskId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseWFTask result = apiInstance.GetBPMTasks(userId, taskId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -226,10 +226,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| userId | 
  **taskId** | **long?**| taskId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 <a name="getsearchtask"></a>
 # **GetSearchTask**
-> VerveResponseWFTaskList GetSearchTask (long? userId, string searchString, bool? completed, bool? searchByUserRoles, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string type = null, long? organizationId = null, string fields = null)
+> VerveResponseWFTaskList GetSearchTask (long? userId, string searchString, bool? completed, bool? searchByUserRoles, int? start, int? end, string requesterId, string clientToken, string type = null, long? organizationId = null, string fields = null, string accessToken = null)
 
 Get list of BPM task assigned to user
 
@@ -273,23 +273,23 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BPMApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose tasks want to get
             var searchString = searchString_example;  // string | searchString
             var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/>
             var searchByUserRoles = true;  // bool? | 1) true - Assigned to roles <br/> 2) false - Assigned to user
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var type = type_example;  // string | Type (optional) 
             var organizationId = 789;  // long? | organizationId (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of BPM task assigned to user
-                VerveResponseWFTaskList result = apiInstance.GetSearchTask(userId, searchString, completed, searchByUserRoles, start, end, loggedInUserId, accessToken, clientToken, type, organizationId, fields);
+                VerveResponseWFTaskList result = apiInstance.GetSearchTask(userId, searchString, completed, searchByUserRoles, start, end, requesterId, clientToken, type, organizationId, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -305,18 +305,18 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose tasks want to get | 
  **searchString** | **string**| searchString | 
  **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; | 
  **searchByUserRoles** | **bool?**| 1) true - Assigned to roles &lt;br/&gt; 2) false - Assigned to user | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **type** | **string**| Type | [optional] 
  **organizationId** | **long?**| organizationId | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 <a name="gettasksbyentity"></a>
 # **GetTasksByEntity**
-> VerveResponseWFTaskList GetTasksByEntity (long? userId, long? entityId, bool? completed, bool? searchByUserRoles, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseWFTaskList GetTasksByEntity (long? userId, long? entityId, bool? completed, bool? searchByUserRoles, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of BPM task assigned to user
 
@@ -360,21 +360,21 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BPMApi();
-            var userId = 789;  // long? | userId whose task want to see
+            var userId = 789;  // long? | User Id whose task want to see
             var entityId = 789;  // long? | entityId
             var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/>
             var searchByUserRoles = true;  // bool? | 1) true - Assigned to roles <br/> 2) false - Assigned to user
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of BPM task assigned to user
-                VerveResponseWFTaskList result = apiInstance.GetTasksByEntity(userId, entityId, completed, searchByUserRoles, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseWFTaskList result = apiInstance.GetTasksByEntity(userId, entityId, completed, searchByUserRoles, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -390,16 +390,16 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId whose task want to see | 
+ **userId** | **long?**| User Id whose task want to see | 
  **entityId** | **long?**| entityId | 
  **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; | 
  **searchByUserRoles** | **bool?**| 1) true - Assigned to roles &lt;br/&gt; 2) false - Assigned to user | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserbpmtasks"></a>
 # **GetUserBPMTasks**
-> VerveResponseWFTaskList GetUserBPMTasks (long? userId, bool? completed, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string type = null, long? organizationId = null, string fields = null)
+> VerveResponseWFTaskList GetUserBPMTasks (long? userId, bool? completed, int? start, int? end, string requesterId, string clientToken, string type = null, long? organizationId = null, string fields = null, string accessToken = null)
 
 Get list of BPM task assigned to user
 
@@ -443,21 +443,21 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BPMApi();
-            var userId = 789;  // long? | userId whose task want to see
+            var userId = 789;  // long? | User Id whose task want to see
             var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/> 3) Blank - All
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var type = type_example;  // string | Type (optional) 
             var organizationId = 789;  // long? | organizationId (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of BPM task assigned to user
-                VerveResponseWFTaskList result = apiInstance.GetUserBPMTasks(userId, completed, start, end, loggedInUserId, accessToken, clientToken, type, organizationId, fields);
+                VerveResponseWFTaskList result = apiInstance.GetUserBPMTasks(userId, completed, start, end, requesterId, clientToken, type, organizationId, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -473,16 +473,16 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId whose task want to see | 
+ **userId** | **long?**| User Id whose task want to see | 
  **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; 3) Blank - All | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **type** | **string**| Type | [optional] 
  **organizationId** | **long?**| organizationId | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserrolesbpmtasks"></a>
 # **GetUserRolesBPMTasks**
-> VerveResponseWFTaskList GetUserRolesBPMTasks (long? userId, bool? completed, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string type = null, long? organizationId = null, string fields = null)
+> VerveResponseWFTaskList GetUserRolesBPMTasks (long? userId, bool? completed, int? start, int? end, string requesterId, string clientToken, string type = null, long? organizationId = null, string fields = null, string accessToken = null)
 
 Get list of BPM task assigned to user roles
 
@@ -526,21 +526,21 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BPMApi();
-            var userId = 789;  // long? | userId whose task want to see
+            var userId = 789;  // long? | User Id whose task want to see
             var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/> 3) Blank - All
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var type = type_example;  // string | Type (optional) 
             var organizationId = 789;  // long? | organizationId (optional) 
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of BPM task assigned to user roles
-                VerveResponseWFTaskList result = apiInstance.GetUserRolesBPMTasks(userId, completed, start, end, loggedInUserId, accessToken, clientToken, type, organizationId, fields);
+                VerveResponseWFTaskList result = apiInstance.GetUserRolesBPMTasks(userId, completed, start, end, requesterId, clientToken, type, organizationId, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -556,16 +556,16 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId whose task want to see | 
+ **userId** | **long?**| User Id whose task want to see | 
  **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; 3) Blank - All | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **type** | **string**| Type | [optional] 
  **organizationId** | **long?**| organizationId | [optional] 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **SentimentDetails** | [**Sentiment**](Sentiment.md) |  | [optional] 
 **SentimentWeightage** | **double?** |  | [optional] 
 **Entity** | [**List&lt;NER&gt;**](NER.md) |  | [optional] 
+**Association** | **long?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
