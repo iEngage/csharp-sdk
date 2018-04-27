@@ -1,6 +1,6 @@
 # IO.IEngage.Api.IdeaApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ Method | HTTP request | Description
 
 <a name="deletecomment"></a>
 # **DeleteComment**
-> VerveResponseComment DeleteComment (long? commentId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment DeleteComment (long? commentId, string requesterId, string clientToken, string accessToken = null)
 
 Delete comment
 
@@ -58,14 +58,14 @@ namespace Example
 
             var apiInstance = new IdeaApi();
             var commentId = 789;  // long? | Comment Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete comment
-                VerveResponseComment result = apiInstance.DeleteComment(commentId, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.DeleteComment(commentId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -82,9 +82,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **long?**| Comment Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteidea"></a>
 # **DeleteIdea**
-> VerveResponseIdea DeleteIdea (long? ideaId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea DeleteIdea (long? ideaId, string requesterId, string clientToken, System.IO.Stream file, string fields = null, string accessToken = null)
 
 Delete idea
 
@@ -129,15 +129,16 @@ namespace Example
 
             var apiInstance = new IdeaApi();
             var ideaId = 789;  // long? | ideaId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var file = /path/to/file.txt;  // System.IO.Stream | file
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete idea
-                VerveResponseIdea result = apiInstance.DeleteIdea(ideaId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.DeleteIdea(ideaId, requesterId, clientToken, file, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -154,10 +155,11 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ideaId** | **long?**| ideaId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **file** | **System.IO.Stream****System.IO.Stream**| file | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -176,7 +178,7 @@ Name | Type | Description  | Notes
 
 <a name="followidea"></a>
 # **FollowIdea**
-> VerveResponseIdea FollowIdea (long? ideaId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea FollowIdea (long? ideaId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Follow idea
 
@@ -202,15 +204,15 @@ namespace Example
 
             var apiInstance = new IdeaApi();
             var ideaId = 789;  // long? | idea Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Follow idea
-                VerveResponseIdea result = apiInstance.FollowIdea(ideaId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.FollowIdea(ideaId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -227,10 +229,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ideaId** | **long?**| idea Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -249,7 +251,7 @@ Name | Type | Description  | Notes
 
 <a name="getallideas"></a>
 # **GetAllIdeas**
-> VerveResponseIdeaList GetAllIdeas (int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetAllIdeas (int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of Ideas
 
@@ -276,15 +278,15 @@ namespace Example
             var apiInstance = new IdeaApi();
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of Ideas
-                VerveResponseIdeaList result = apiInstance.GetAllIdeas(start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetAllIdeas(start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -302,10 +304,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -324,7 +326,7 @@ Name | Type | Description  | Notes
 
 <a name="getfollowingideas"></a>
 # **GetFollowingIdeas**
-> VerveResponseIdeaList GetFollowingIdeas (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetFollowingIdeas (long? userId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of ideas that users are following
 
@@ -349,18 +351,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new IdeaApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose followed ideas want to get.
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of ideas that users are following
-                VerveResponseIdeaList result = apiInstance.GetFollowingIdeas(userId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetFollowingIdeas(userId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -376,13 +378,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose followed ideas want to get. | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -401,7 +403,7 @@ Name | Type | Description  | Notes
 
 <a name="getgroupideas"></a>
 # **GetGroupIdeas**
-> VerveResponseIdeaList GetGroupIdeas (long? userId, long? groupId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetGroupIdeas (long? userId, long? groupId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of ideas in group
 
@@ -430,15 +432,15 @@ namespace Example
             var groupId = 789;  // long? | group Id
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of ideas in group
-                VerveResponseIdeaList result = apiInstance.GetGroupIdeas(userId, groupId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetGroupIdeas(userId, groupId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -458,10 +460,10 @@ Name | Type | Description  | Notes
  **groupId** | **long?**| group Id | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -480,7 +482,7 @@ Name | Type | Description  | Notes
 
 <a name="getidea"></a>
 # **GetIdea**
-> VerveResponseIdea GetIdea (long? ideaId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea GetIdea (long? ideaId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get idea by id
 
@@ -506,15 +508,15 @@ namespace Example
 
             var apiInstance = new IdeaApi();
             var ideaId = 789;  // long? | idea Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get idea by id
-                VerveResponseIdea result = apiInstance.GetIdea(ideaId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.GetIdea(ideaId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -531,10 +533,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ideaId** | **long?**| idea Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -553,7 +555,7 @@ Name | Type | Description  | Notes
 
 <a name="getideacomment"></a>
 # **GetIdeaComment**
-> VerveResponseCommentList GetIdeaComment (long? ideaId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseCommentList GetIdeaComment (long? ideaId, int? start, int? end, string requesterId, string clientToken, string accessToken = null)
 
 Get list of comments on idea
 
@@ -581,14 +583,14 @@ namespace Example
             var ideaId = 789;  // long? | idea Id
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of comments on idea
-                VerveResponseCommentList result = apiInstance.GetIdeaComment(ideaId, start, end, loggedInUserId, accessToken, clientToken);
+                VerveResponseCommentList result = apiInstance.GetIdeaComment(ideaId, start, end, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -607,9 +609,9 @@ Name | Type | Description  | Notes
  **ideaId** | **long?**| idea Id | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -628,7 +630,7 @@ Name | Type | Description  | Notes
 
 <a name="getideafollowers"></a>
 # **GetIdeaFollowers**
-> VerveResponseUserList GetIdeaFollowers (long? ideaId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseUserList GetIdeaFollowers (long? ideaId, int? start, int? end, string requesterId, string clientToken, string accessToken = null)
 
 Get list of followers for this idea
 
@@ -656,14 +658,14 @@ namespace Example
             var ideaId = 789;  // long? | ideaId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of followers for this idea
-                VerveResponseUserList result = apiInstance.GetIdeaFollowers(ideaId, start, end, loggedInUserId, accessToken, clientToken);
+                VerveResponseUserList result = apiInstance.GetIdeaFollowers(ideaId, start, end, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -682,9 +684,9 @@ Name | Type | Description  | Notes
  **ideaId** | **long?**| ideaId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -703,7 +705,7 @@ Name | Type | Description  | Notes
 
 <a name="getidearatingparameters"></a>
 # **GetIdeaRatingParameters**
-> VerveResponseString GetIdeaRatingParameters (long? userId, string ideaStage, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseString GetIdeaRatingParameters (long? userId, string ideaStage, string requesterId, string clientToken, string accessToken = null)
 
 Get rating parameters of idea by user
 
@@ -730,14 +732,14 @@ namespace Example
             var apiInstance = new IdeaApi();
             var userId = 789;  // long? | user Id
             var ideaStage = ideaStage_example;  // string | Idea stages<br/>1)under-consideration <br/>2) shortlisted <br/>3) accepted <br/>4) prototyping
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get rating parameters of idea by user
-                VerveResponseString result = apiInstance.GetIdeaRatingParameters(userId, ideaStage, loggedInUserId, accessToken, clientToken);
+                VerveResponseString result = apiInstance.GetIdeaRatingParameters(userId, ideaStage, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -755,9 +757,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| user Id | 
  **ideaStage** | **string**| Idea stages&lt;br/&gt;1)under-consideration &lt;br/&gt;2) shortlisted &lt;br/&gt;3) accepted &lt;br/&gt;4) prototyping | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -776,7 +778,7 @@ Name | Type | Description  | Notes
 
 <a name="getidearatings"></a>
 # **GetIdeaRatings**
-> VerveResponseIdeaUserRatingList GetIdeaRatings (long? userId, long? ideaId, string ideaStage, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseIdeaUserRatingList GetIdeaRatings (long? userId, long? ideaId, string ideaStage, string requesterId, string clientToken, string accessToken = null)
 
 Get list of ideas that are rated by user 
 
@@ -804,14 +806,14 @@ namespace Example
             var userId = 789;  // long? | user Id
             var ideaId = 789;  // long? | idea Id
             var ideaStage = ideaStage_example;  // string | Idea stages<br/>1)under-consideration <br/>2) shortlisted <br/>3) accepted <br/>4) prototyping
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of ideas that are rated by user 
-                VerveResponseIdeaUserRatingList result = apiInstance.GetIdeaRatings(userId, ideaId, ideaStage, loggedInUserId, accessToken, clientToken);
+                VerveResponseIdeaUserRatingList result = apiInstance.GetIdeaRatings(userId, ideaId, ideaStage, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -830,9 +832,9 @@ Name | Type | Description  | Notes
  **userId** | **long?**| user Id | 
  **ideaId** | **long?**| idea Id | 
  **ideaStage** | **string**| Idea stages&lt;br/&gt;1)under-consideration &lt;br/&gt;2) shortlisted &lt;br/&gt;3) accepted &lt;br/&gt;4) prototyping | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -851,7 +853,7 @@ Name | Type | Description  | Notes
 
 <a name="getrecommendideas"></a>
 # **GetRecommendIdeas**
-> VerveResponseIdeaList GetRecommendIdeas (int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetRecommendIdeas (int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get the list of recommended ideas
 
@@ -878,15 +880,15 @@ namespace Example
             var apiInstance = new IdeaApi();
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get the list of recommended ideas
-                VerveResponseIdeaList result = apiInstance.GetRecommendIdeas(start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetRecommendIdeas(start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -904,10 +906,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -926,7 +928,7 @@ Name | Type | Description  | Notes
 
 <a name="gettopideas"></a>
 # **GetTopIdeas**
-> VerveResponseIdeaList GetTopIdeas (int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetTopIdeas (int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get the list of top ideas
 
@@ -953,15 +955,15 @@ namespace Example
             var apiInstance = new IdeaApi();
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get the list of top ideas
-                VerveResponseIdeaList result = apiInstance.GetTopIdeas(start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetTopIdeas(start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -979,10 +981,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1001,7 +1003,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserideas"></a>
 # **GetUserIdeas**
-> VerveResponseIdeaList GetUserIdeas (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetUserIdeas (long? userId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of ideas shared by user
 
@@ -1026,18 +1028,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new IdeaApi();
-            var userId = 789;  // long? | userId whose ideas you need
+            var userId = 789;  // long? | userId whose shared ideas want to get
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of ideas shared by user
-                VerveResponseIdeaList result = apiInstance.GetUserIdeas(userId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetUserIdeas(userId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1053,13 +1055,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId whose ideas you need | 
+ **userId** | **long?**| userId whose shared ideas want to get | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1078,7 +1080,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserrateideas"></a>
 # **GetUserRateIdeas**
-> VerveResponseIdeaList GetUserRateIdeas (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetUserRateIdeas (long? userId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of ideas rated by user
 
@@ -1103,18 +1105,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new IdeaApi();
-            var userId = 789;  // long? | userId whose ideas you need
+            var userId = 789;  // long? | userId whose rated ideas want to get
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of ideas rated by user
-                VerveResponseIdeaList result = apiInstance.GetUserRateIdeas(userId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetUserRateIdeas(userId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1130,13 +1132,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId whose ideas you need | 
+ **userId** | **long?**| userId whose rated ideas want to get | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1155,7 +1157,7 @@ Name | Type | Description  | Notes
 
 <a name="rateidea"></a>
 # **RateIdea**
-> VerveResponseIdea RateIdea (long? userId, long? ideaId, string ideaStage, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea RateIdea (long? userId, long? ideaId, string ideaStage, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Rate an idea
 
@@ -1183,15 +1185,15 @@ namespace Example
             var userId = 789;  // long? | user Id
             var ideaId = 789;  // long? | idea Id
             var ideaStage = ideaStage_example;  // string | Ideas stage<br/>1)under-consideration <br/>2) shortlisted <br/>3) accepted <br/>4) prototyping
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Rate an idea
-                VerveResponseIdea result = apiInstance.RateIdea(userId, ideaId, ideaStage, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.RateIdea(userId, ideaId, ideaStage, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1210,10 +1212,10 @@ Name | Type | Description  | Notes
  **userId** | **long?**| user Id | 
  **ideaId** | **long?**| idea Id | 
  **ideaStage** | **string**| Ideas stage&lt;br/&gt;1)under-consideration &lt;br/&gt;2) shortlisted &lt;br/&gt;3) accepted &lt;br/&gt;4) prototyping | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1232,7 +1234,7 @@ Name | Type | Description  | Notes
 
 <a name="rateidea_0"></a>
 # **RateIdea_0**
-> VerveResponseIdea RateIdea_0 (long? userId, long? ideaId, string ideaStage, string _parameter, double? rating, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea RateIdea_0 (long? userId, long? ideaId, string ideaStage, string _parameter, double? rating, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Give rating on idea
 
@@ -1262,15 +1264,15 @@ namespace Example
             var ideaStage = ideaStage_example;  // string | Idea stages<br/>1)under-consideration <br/>2) shortlisted <br/>3) accepted <br/>4) prototyping
             var _parameter = _parameter_example;  // string | parameter
             var rating = 1.2;  // double? | rating
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Give rating on idea
-                VerveResponseIdea result = apiInstance.RateIdea_0(userId, ideaId, ideaStage, _parameter, rating, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.RateIdea_0(userId, ideaId, ideaStage, _parameter, rating, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1291,10 +1293,10 @@ Name | Type | Description  | Notes
  **ideaStage** | **string**| Idea stages&lt;br/&gt;1)under-consideration &lt;br/&gt;2) shortlisted &lt;br/&gt;3) accepted &lt;br/&gt;4) prototyping | 
  **_parameter** | **string**| parameter | 
  **rating** | **double?**| rating | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1313,7 +1315,7 @@ Name | Type | Description  | Notes
 
 <a name="searchideas"></a>
 # **SearchIdeas**
-> VerveResponseIdeaList SearchIdeas (string searchText, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList SearchIdeas (string searchText, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of matching ideas
 
@@ -1341,15 +1343,15 @@ namespace Example
             var searchText = searchText_example;  // string | Enter text to be searched
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of matching ideas
-                VerveResponseIdeaList result = apiInstance.SearchIdeas(searchText, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.SearchIdeas(searchText, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1368,10 +1370,10 @@ Name | Type | Description  | Notes
  **searchText** | **string**| Enter text to be searched | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1390,7 +1392,7 @@ Name | Type | Description  | Notes
 
 <a name="shareformidea"></a>
 # **ShareFormIdea**
-> VerveResponseIdea ShareFormIdea (string body, string body2, long? body3, List<Attachment> body4, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseIdea ShareFormIdea (string title, string description, string groupId, System.IO.Stream file, string loggedInUserId, string accessToken, string clientToken)
 
 Share Idea with attachments
 
@@ -1415,10 +1417,10 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new IdeaApi();
-            var body = body_example;  // string | title
-            var body2 = body_example;  // string | description
-            var body3 = 789;  // long? | groupId
-            var body4 = new List<Attachment>(); // List<Attachment> | attachments
+            var title = title_example;  // string | title
+            var description = description_example;  // string | description
+            var groupId = groupId_example;  // string | groupId
+            var file = /path/to/file.txt;  // System.IO.Stream | file
             var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
@@ -1426,7 +1428,7 @@ namespace Example
             try
             {
                 // Share Idea with attachments
-                VerveResponseIdea result = apiInstance.ShareFormIdea(body, body2, body3, body4, loggedInUserId, accessToken, clientToken);
+                VerveResponseIdea result = apiInstance.ShareFormIdea(title, description, groupId, file, loggedInUserId, accessToken, clientToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1442,10 +1444,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **string**| title | 
- **body2** | **string**| description | 
- **body3** | **long?**| groupId | 
- **body4** | [**List&lt;Attachment&gt;**](Attachment.md)| attachments | 
+ **title** | **string**| title | 
+ **description** | **string**| description | 
+ **groupId** | **string**| groupId | 
+ **file** | **System.IO.Stream****System.IO.Stream**| file | 
  **loggedInUserId** | **string**| User id of logged / authenticated user | 
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
@@ -1467,11 +1469,11 @@ Name | Type | Description  | Notes
 
 <a name="shareidea"></a>
 # **ShareIdea**
-> VerveResponseIdea ShareIdea (string title, string description, long? groupId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseIdea ShareIdea (string requesterId, string clientToken, Idea body = null, string accessToken = null)
 
 Share idea  
 
-Allows the user to share idea. Returns the shared idea
+This service allows a user to share a idea. The following fields(key:value) are required to be present in the Idea JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. ideaTitle </br>2. ideaDescription </br>3. group: { groupId } </br>
 
 ### Example
 ```csharp
@@ -1492,17 +1494,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new IdeaApi();
-            var title = title_example;  // string | title
-            var description = description_example;  // string | description
-            var groupId = 789;  // long? | group Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Idea(); // Idea |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Share idea  
-                VerveResponseIdea result = apiInstance.ShareIdea(title, description, groupId, loggedInUserId, accessToken, clientToken);
+                VerveResponseIdea result = apiInstance.ShareIdea(requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1518,12 +1518,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **title** | **string**| title | 
- **description** | **string**| description | 
- **groupId** | **long?**| group Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Idea**](Idea.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1535,18 +1533,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="shareideacomment"></a>
 # **ShareIdeaComment**
-> VerveResponseComment ShareIdeaComment (long? ideaId, string commentText, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment ShareIdeaComment (long? ideaId, string requesterId, string clientToken, Comment body = null, string accessToken = null)
 
 Comment on shared idea
 
-Allows the user to comment on shared idea. Returns the comment
+This service allows a user to comment on a idea. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. ideaId (Path Parameter)</br>2. commentText </br>
 
 ### Example
 ```csharp
@@ -1568,15 +1566,15 @@ namespace Example
 
             var apiInstance = new IdeaApi();
             var ideaId = 789;  // long? | idea Id
-            var commentText = commentText_example;  // string | comment text
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Comment(); // Comment |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Comment on shared idea
-                VerveResponseComment result = apiInstance.ShareIdeaComment(ideaId, commentText, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.ShareIdeaComment(ideaId, requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1593,10 +1591,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ideaId** | **long?**| idea Id | 
- **commentText** | **string**| comment text | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Comment**](Comment.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1608,14 +1606,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="unfollowidea"></a>
 # **UnfollowIdea**
-> VerveResponseIdea UnfollowIdea (long? ideaId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea UnfollowIdea (long? ideaId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Unfollow idea
 
@@ -1641,15 +1639,15 @@ namespace Example
 
             var apiInstance = new IdeaApi();
             var ideaId = 789;  // long? | idea Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unfollow idea
-                VerveResponseIdea result = apiInstance.UnfollowIdea(ideaId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.UnfollowIdea(ideaId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1666,10 +1664,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ideaId** | **long?**| idea Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1688,7 +1686,7 @@ Name | Type | Description  | Notes
 
 <a name="updatecommet"></a>
 # **UpdateCommet**
-> VerveResponseComment UpdateCommet (long? commentId, string commentText, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment UpdateCommet (long? commentId, string commentText, string requesterId, string clientToken, string accessToken = null)
 
 Update comment
 
@@ -1715,14 +1713,14 @@ namespace Example
             var apiInstance = new IdeaApi();
             var commentId = 789;  // long? | commentId
             var commentText = commentText_example;  // string | Comment text
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update comment
-                VerveResponseComment result = apiInstance.UpdateCommet(commentId, commentText, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.UpdateCommet(commentId, commentText, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1740,9 +1738,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **long?**| commentId | 
  **commentText** | **string**| Comment text | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1761,7 +1759,7 @@ Name | Type | Description  | Notes
 
 <a name="updateidea"></a>
 # **UpdateIdea**
-> VerveResponseIdea UpdateIdea (long? ideaId, string ideaTitle, string ideaDescription, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdea UpdateIdea (long? ideaId, string ideaTitle, string ideaDescription, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Update idea
 
@@ -1789,15 +1787,15 @@ namespace Example
             var ideaId = 789;  // long? | ideaId
             var ideaTitle = ideaTitle_example;  // string | Idea Title
             var ideaDescription = ideaDescription_example;  // string | Describe Idea
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update idea
-                VerveResponseIdea result = apiInstance.UpdateIdea(ideaId, ideaTitle, ideaDescription, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdea result = apiInstance.UpdateIdea(ideaId, ideaTitle, ideaDescription, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1816,10 +1814,10 @@ Name | Type | Description  | Notes
  **ideaId** | **long?**| ideaId | 
  **ideaTitle** | **string**| Idea Title | 
  **ideaDescription** | **string**| Describe Idea | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

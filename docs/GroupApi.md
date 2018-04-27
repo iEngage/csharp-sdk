@@ -1,21 +1,96 @@
 # IO.IEngage.Api.GroupApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateGroup**](GroupApi.md#creategroup) | **POST** /groups | Create group
 [**DeleteGroup**](GroupApi.md#deletegroup) | **DELETE** /groups/{groupId} | Delete group
 [**FollowGroup**](GroupApi.md#followgroup) | **POST** /groups/{groupId}/follow | Follow group
 [**GetGroupFollowers**](GroupApi.md#getgroupfollowers) | **GET** /groups/{groupId}/followers | Get the list of followers for the group
 [**GetGroupIdeas**](GroupApi.md#getgroupideas) | **GET** /groups/{groupId}/ideas | Get list of all ideas in a group
+[**GetGroups**](GroupApi.md#getgroups) | **GET** /groups | Get the list of groups visible for user
+[**GetRecommendationGroup**](GroupApi.md#getrecommendationgroup) | **GET** /groups/recommend | Get list of recommended groups
 [**GetUserFollowingGroups**](GroupApi.md#getuserfollowinggroups) | **GET** /groups/{userId}/following | Get list of groups that a user is following
+[**SearchGroups**](GroupApi.md#searchgroups) | **GET** /groups/search | Get list of matching groups
 [**UnfollowGroup**](GroupApi.md#unfollowgroup) | **POST** /groups/{groupId}/unfollow | Unfollow group
 [**UpdateGroup**](GroupApi.md#updategroup) | **PUT** /groups/{groupId} | Update group
 
 
+<a name="creategroup"></a>
+# **CreateGroup**
+> VerveResponseGroup CreateGroup (string requesterId, string clientToken, Group body = null, string accessToken = null)
+
+Create group
+
+This service allows a user to create a group. The following fields(key:value) are required to be present in the Group JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. association </br>2. groupName </br>3. description </br>4. managerId [1,2,..] </br>5. accessType </br>
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.IEngage.Api;
+using IO.IEngage.Client;
+using IO.IEngage.Model;
+
+namespace Example
+{
+    public class CreateGroupExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: default
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new GroupApi();
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
+            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Group(); // Group |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
+
+            try
+            {
+                // Create group
+                VerveResponseGroup result = apiInstance.CreateGroup(requesterId, clientToken, body, accessToken);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GroupApi.CreateGroup: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
+ **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Group**](Group.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
+
+### Return type
+
+[**VerveResponseGroup**](VerveResponseGroup.md)
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="deletegroup"></a>
 # **DeleteGroup**
-> VerveResponseGroup DeleteGroup (long? groupId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseGroup DeleteGroup (long? groupId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Delete group
 
@@ -41,15 +116,15 @@ namespace Example
 
             var apiInstance = new GroupApi();
             var groupId = 789;  // long? | groupId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete group
-                VerveResponseGroup result = apiInstance.DeleteGroup(groupId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseGroup result = apiInstance.DeleteGroup(groupId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -66,10 +141,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **long?**| groupId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -88,7 +163,7 @@ Name | Type | Description  | Notes
 
 <a name="followgroup"></a>
 # **FollowGroup**
-> VerveResponseGroup FollowGroup (long? groupId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseGroup FollowGroup (long? groupId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Follow group
 
@@ -114,15 +189,15 @@ namespace Example
 
             var apiInstance = new GroupApi();
             var groupId = 789;  // long? | groupId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Follow group
-                VerveResponseGroup result = apiInstance.FollowGroup(groupId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseGroup result = apiInstance.FollowGroup(groupId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -139,10 +214,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **long?**| groupId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -161,7 +236,7 @@ Name | Type | Description  | Notes
 
 <a name="getgroupfollowers"></a>
 # **GetGroupFollowers**
-> VerveResponseUserList GetGroupFollowers (long? groupId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseUserList GetGroupFollowers (long? groupId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get the list of followers for the group
 
@@ -189,15 +264,15 @@ namespace Example
             var groupId = 789;  // long? | groupId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/>7)currentUserFollowing<br/>8)currentUserFriend<br/>9)equityScore (optional)  (default to userId,firstName,lastName,profileImage)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName,profileImage)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get the list of followers for the group
-                VerveResponseUserList result = apiInstance.GetGroupFollowers(groupId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseUserList result = apiInstance.GetGroupFollowers(groupId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -216,10 +291,10 @@ Name | Type | Description  | Notes
  **groupId** | **long?**| groupId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)currentUserFriend&lt;br/&gt;9)equityScore | [optional] [default to userId,firstName,lastName,profileImage]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName,profileImage]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -238,7 +313,7 @@ Name | Type | Description  | Notes
 
 <a name="getgroupideas"></a>
 # **GetGroupIdeas**
-> VerveResponseIdeaList GetGroupIdeas (long? groupId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseIdeaList GetGroupIdeas (long? groupId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of all ideas in a group
 
@@ -266,15 +341,15 @@ namespace Example
             var groupId = 789;  // long? | groupId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)ideaId<br/>2)ideaTitle<br/>3)ideaDescription<br/>4)ideaCreationDate<br/><b>A) Available values-</b><br/>1)ideaId<br/>2)ideaTitle<br/>3)group<br/>4)ideaDescription<br/>5)ideator<br/>6)ideaCreationDate<br/>7)lastModifiedDate<br/>8)ideaStage<br/>9)domain<br/>10)technology<br/>11)accessType<br/>12)videoId<br/>13)activeStatus<br/>14)teamStatus<br/>15)projectStatus<br/>16)totalFollowers<br/>17)totalComments<br/>18)totalBlogs<br/>19)averageRatingScore<br/>20)numberOfRatings<br/>21)currentUserFollowing<br/>22)currentUserRating<br/>23)ideaFileURL<br/>24)sentiment</br>25)entity (optional)  (default to ideaId,ideaTitle,ideaDescription,ideaCreationDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of all ideas in a group
-                VerveResponseIdeaList result = apiInstance.GetGroupIdeas(groupId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseIdeaList result = apiInstance.GetGroupIdeas(groupId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -293,10 +368,10 @@ Name | Type | Description  | Notes
  **groupId** | **long?**| groupId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)ideaDescription&lt;br/&gt;4)ideaCreationDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)ideaId&lt;br/&gt;2)ideaTitle&lt;br/&gt;3)group&lt;br/&gt;4)ideaDescription&lt;br/&gt;5)ideator&lt;br/&gt;6)ideaCreationDate&lt;br/&gt;7)lastModifiedDate&lt;br/&gt;8)ideaStage&lt;br/&gt;9)domain&lt;br/&gt;10)technology&lt;br/&gt;11)accessType&lt;br/&gt;12)videoId&lt;br/&gt;13)activeStatus&lt;br/&gt;14)teamStatus&lt;br/&gt;15)projectStatus&lt;br/&gt;16)totalFollowers&lt;br/&gt;17)totalComments&lt;br/&gt;18)totalBlogs&lt;br/&gt;19)averageRatingScore&lt;br/&gt;20)numberOfRatings&lt;br/&gt;21)currentUserFollowing&lt;br/&gt;22)currentUserRating&lt;br/&gt;23)ideaFileURL&lt;br/&gt;24)sentiment&lt;/br&gt;25)entity | [optional] [default to ideaId,ideaTitle,ideaDescription,ideaCreationDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -313,9 +388,159 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="getgroups"></a>
+# **GetGroups**
+> VerveResponseGroupList GetGroups (int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
+
+Get the list of groups visible for user
+
+Returns the list of groups
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.IEngage.Api;
+using IO.IEngage.Client;
+using IO.IEngage.Model;
+
+namespace Example
+{
+    public class GetGroupsExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: default
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new GroupApi();
+            var start = 56;  // int? | start, initial value start from 0
+            var end = 56;  // int? | end
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
+            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
+
+            try
+            {
+                // Get the list of groups visible for user
+                VerveResponseGroupList result = apiInstance.GetGroups(start, end, requesterId, clientToken, fields, accessToken);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GroupApi.GetGroups: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **int?**| start, initial value start from 0 | 
+ **end** | **int?**| end | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
+ **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
+
+### Return type
+
+[**VerveResponseGroupList**](VerveResponseGroupList.md)
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getrecommendationgroup"></a>
+# **GetRecommendationGroup**
+> VerveResponseGroupList GetRecommendationGroup (int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
+
+Get list of recommended groups
+
+Returns the list of recommended groups
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.IEngage.Api;
+using IO.IEngage.Client;
+using IO.IEngage.Model;
+
+namespace Example
+{
+    public class GetRecommendationGroupExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: default
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new GroupApi();
+            var start = 56;  // int? | start, initial value start from 0
+            var end = 56;  // int? | end
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
+            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
+
+            try
+            {
+                // Get list of recommended groups
+                VerveResponseGroupList result = apiInstance.GetRecommendationGroup(start, end, requesterId, clientToken, fields, accessToken);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GroupApi.GetRecommendationGroup: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **int?**| start, initial value start from 0 | 
+ **end** | **int?**| end | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
+ **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
+
+### Return type
+
+[**VerveResponseGroupList**](VerveResponseGroupList.md)
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="getuserfollowinggroups"></a>
 # **GetUserFollowingGroups**
-> VerveResponseGroupList GetUserFollowingGroups (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseGroupList GetUserFollowingGroups (long? userId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of groups that a user is following
 
@@ -340,18 +565,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new GroupApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose groups want to get.
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of groups that a user is following
-                VerveResponseGroupList result = apiInstance.GetUserFollowingGroups(userId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseGroupList result = apiInstance.GetUserFollowingGroups(userId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -367,13 +592,90 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose groups want to get. | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
+
+### Return type
+
+[**VerveResponseGroupList**](VerveResponseGroupList.md)
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="searchgroups"></a>
+# **SearchGroups**
+> VerveResponseGroupList SearchGroups (string query, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
+
+Get list of matching groups
+
+Returns the list of matching group
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.IEngage.Api;
+using IO.IEngage.Client;
+using IO.IEngage.Model;
+
+namespace Example
+{
+    public class SearchGroupsExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: default
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new GroupApi();
+            var query = query_example;  // string | query
+            var start = 56;  // int? | start, initial value start from 0
+            var end = 56;  // int? | end
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
+            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
+
+            try
+            {
+                // Get list of matching groups
+                VerveResponseGroupList result = apiInstance.SearchGroups(query, start, end, requesterId, clientToken, fields, accessToken);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling GroupApi.SearchGroups: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query** | **string**| query | 
+ **start** | **int?**| start, initial value start from 0 | 
+ **end** | **int?**| end | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
+ **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -392,7 +694,7 @@ Name | Type | Description  | Notes
 
 <a name="unfollowgroup"></a>
 # **UnfollowGroup**
-> VerveResponseGroup UnfollowGroup (long? groupId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseGroup UnfollowGroup (long? groupId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Unfollow group
 
@@ -418,15 +720,15 @@ namespace Example
 
             var apiInstance = new GroupApi();
             var groupId = 789;  // long? | groupId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unfollow group
-                VerveResponseGroup result = apiInstance.UnfollowGroup(groupId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseGroup result = apiInstance.UnfollowGroup(groupId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -443,10 +745,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **long?**| groupId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -465,7 +767,7 @@ Name | Type | Description  | Notes
 
 <a name="updategroup"></a>
 # **UpdateGroup**
-> VerveResponseGroup UpdateGroup (long? groupId, string title, string description, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseGroup UpdateGroup (long? groupId, string title, string description, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Update group
 
@@ -493,15 +795,15 @@ namespace Example
             var groupId = 789;  // long? | groupId
             var title = title_example;  // string | title
             var description = description_example;  // string | description
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update group
-                VerveResponseGroup result = apiInstance.UpdateGroup(groupId, title, description, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseGroup result = apiInstance.UpdateGroup(groupId, title, description, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -520,10 +822,10 @@ Name | Type | Description  | Notes
  **groupId** | **long?**| groupId | 
  **title** | **string**| title | 
  **description** | **string**| description | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

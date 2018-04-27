@@ -1,6 +1,6 @@
 # IO.IEngage.Api.CollaborationApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,11 +30,11 @@ Method | HTTP request | Description
 
 <a name="addcommentblog"></a>
 # **AddCommentBlog**
-> VerveResponseComment AddCommentBlog (long? blogId, string commentText, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment AddCommentBlog (long? blogId, string requesterId, string clientToken, Comment body = null, string accessToken = null)
 
 Comment on posted blog
 
-Allows the user to give comment on posted Blog. Returns the comment
+This service allows a user to comment on a blog. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. blogId (Path Parameter)</br>2. commentText </br>
 
 ### Example
 ```csharp
@@ -56,15 +56,15 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var blogId = 789;  // long? | blogId
-            var commentText = commentText_example;  // string | Comment Text
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Comment(); // Comment |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Comment on posted blog
-                VerveResponseComment result = apiInstance.AddCommentBlog(blogId, commentText, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.AddCommentBlog(blogId, requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -81,10 +81,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **blogId** | **long?**| blogId | 
- **commentText** | **string**| Comment Text | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Comment**](Comment.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -96,18 +96,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="addcommentdiscussion"></a>
 # **AddCommentDiscussion**
-> VerveResponseComment AddCommentDiscussion (long? discussionId, string commentText, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment AddCommentDiscussion (long? discussionId, string requesterId, string clientToken, Comment body = null, string accessToken = null)
 
 Comment on discussion
 
-Allows the user to comment on discussion. Returns the comment
+This service allows a user to comment on a discussion. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. discussionId (Path Parameter)</br>2. commentText </br>
 
 ### Example
 ```csharp
@@ -129,15 +129,15 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var discussionId = 789;  // long? | discussionId
-            var commentText = commentText_example;  // string | Comment Text
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Comment(); // Comment |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Comment on discussion
-                VerveResponseComment result = apiInstance.AddCommentDiscussion(discussionId, commentText, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.AddCommentDiscussion(discussionId, requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -154,10 +154,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **discussionId** | **long?**| discussionId | 
- **commentText** | **string**| Comment Text | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Comment**](Comment.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -169,14 +169,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="deleteblog"></a>
 # **DeleteBlog**
-> VerveResponseBlog DeleteBlog (long? blogId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseBlog DeleteBlog (long? blogId, string requesterId, string clientToken, string accessToken = null)
 
 Delete blog
 
@@ -202,14 +202,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var blogId = 789;  // long? | blog Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete blog
-                VerveResponseBlog result = apiInstance.DeleteBlog(blogId, loggedInUserId, accessToken, clientToken);
+                VerveResponseBlog result = apiInstance.DeleteBlog(blogId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -226,9 +226,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **blogId** | **long?**| blog Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteblogcomment"></a>
 # **DeleteBlogComment**
-> VerveResponseComment DeleteBlogComment (long? commentId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment DeleteBlogComment (long? commentId, string requesterId, string clientToken, string accessToken = null)
 
 Delete blog comment
 
@@ -273,14 +273,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var commentId = 789;  // long? | comment Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete blog comment
-                VerveResponseComment result = apiInstance.DeleteBlogComment(commentId, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.DeleteBlogComment(commentId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -297,9 +297,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **long?**| comment Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
 
 <a name="deletediscussion"></a>
 # **DeleteDiscussion**
-> VerveResponseDiscussion DeleteDiscussion (long? discussionId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseDiscussion DeleteDiscussion (long? discussionId, string requesterId, string clientToken, string accessToken = null)
 
 Delete discussion
 
@@ -344,14 +344,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var discussionId = 789;  // long? | discussion Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete discussion
-                VerveResponseDiscussion result = apiInstance.DeleteDiscussion(discussionId, loggedInUserId, accessToken, clientToken);
+                VerveResponseDiscussion result = apiInstance.DeleteDiscussion(discussionId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -368,9 +368,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **discussionId** | **long?**| discussion Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 
 <a name="deletediscussioncomment"></a>
 # **DeleteDiscussionComment**
-> VerveResponseComment DeleteDiscussionComment (long? commentId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment DeleteDiscussionComment (long? commentId, string requesterId, string clientToken, string accessToken = null)
 
 Delete discussion comment
 
@@ -415,14 +415,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var commentId = 789;  // long? | comment Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Delete discussion comment
-                VerveResponseComment result = apiInstance.DeleteDiscussionComment(commentId, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.DeleteDiscussionComment(commentId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -439,9 +439,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **long?**| comment Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 <a name="getblogcomments"></a>
 # **GetBlogComments**
-> VerveResponseCommentList GetBlogComments (long? blogId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseCommentList GetBlogComments (long? blogId, int? start, int? end, string requesterId, string clientToken, string accessToken = null)
 
 Get list of comments on blog
 
@@ -488,14 +488,14 @@ namespace Example
             var blogId = 789;  // long? | blogId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of comments on blog
-                VerveResponseCommentList result = apiInstance.GetBlogComments(blogId, start, end, loggedInUserId, accessToken, clientToken);
+                VerveResponseCommentList result = apiInstance.GetBlogComments(blogId, start, end, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -514,9 +514,9 @@ Name | Type | Description  | Notes
  **blogId** | **long?**| blogId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -535,7 +535,7 @@ Name | Type | Description  | Notes
 
 <a name="getblogs"></a>
 # **GetBlogs**
-> VerveResponseBlogList GetBlogs (long? organizationId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseBlogList GetBlogs (long? association, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of blogs
 
@@ -560,18 +560,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaborationApi();
-            var organizationId = 789;  // long? | organizationId
+            var association = 789;  // long? | association
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/><b>A )Available values-</b><br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to blogId,blogTitle,blogDescription,createdDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of blogs
-                VerveResponseBlogList result = apiInstance.GetBlogs(organizationId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseBlogList result = apiInstance.GetBlogs(association, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -587,13 +587,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **long?**| organizationId | 
+ **association** | **long?**| association | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A )Available values-&lt;/b&gt;&lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to blogId,blogTitle,blogDescription,createdDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -612,7 +612,7 @@ Name | Type | Description  | Notes
 
 <a name="getdiscussioncomments"></a>
 # **GetDiscussionComments**
-> VerveResponseCommentList GetDiscussionComments (long? discussionId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseCommentList GetDiscussionComments (long? discussionId, int? start, int? end, string requesterId, string clientToken, string accessToken = null)
 
 Get list of comments on discussion
 
@@ -640,14 +640,14 @@ namespace Example
             var discussionId = 789;  // long? | discussionId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of comments on discussion
-                VerveResponseCommentList result = apiInstance.GetDiscussionComments(discussionId, start, end, loggedInUserId, accessToken, clientToken);
+                VerveResponseCommentList result = apiInstance.GetDiscussionComments(discussionId, start, end, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -666,9 +666,9 @@ Name | Type | Description  | Notes
  **discussionId** | **long?**| discussionId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -687,7 +687,7 @@ Name | Type | Description  | Notes
 
 <a name="getdiscussions"></a>
 # **GetDiscussions**
-> VerveResponseDiscussionList GetDiscussions (long? organizationId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseDiscussionList GetDiscussions (long? association, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of discussions
 
@@ -712,18 +712,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaborationApi();
-            var organizationId = 789;  // long? | organizationId
+            var association = 789;  // long? | association
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to discussionId,discussionSubject,discussionDescription,createdDate )
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of discussions
-                VerveResponseDiscussionList result = apiInstance.GetDiscussions(organizationId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseDiscussionList result = apiInstance.GetDiscussions(association, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -739,13 +739,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **long?**| organizationId | 
+ **association** | **long?**| association | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to discussionId,discussionSubject,discussionDescription,createdDate ]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -764,7 +764,7 @@ Name | Type | Description  | Notes
 
 <a name="getusersubscribedblogs"></a>
 # **GetUserSubscribedBlogs**
-> VerveResponseBlog GetUserSubscribedBlogs (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseBlog GetUserSubscribedBlogs (long? userId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of blogs subscribed by user
 
@@ -789,18 +789,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaborationApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose subcribtions want tp get. 
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/><b>A )Available values-</b><br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to blogId,blogTitle,blogDescription,createdDate)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of blogs subscribed by user
-                VerveResponseBlog result = apiInstance.GetUserSubscribedBlogs(userId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseBlog result = apiInstance.GetUserSubscribedBlogs(userId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -816,13 +816,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose subcribtions want tp get.  | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A )Available values-&lt;/b&gt;&lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to blogId,blogTitle,blogDescription,createdDate]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -841,7 +841,7 @@ Name | Type | Description  | Notes
 
 <a name="getusersubscribeddiscussions"></a>
 # **GetUserSubscribedDiscussions**
-> VerveResponseGroupList GetUserSubscribedDiscussions (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseDiscussionList GetUserSubscribedDiscussions (long? userId, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of discussions subscribed by user
 
@@ -866,18 +866,18 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaborationApi();
-            var userId = 789;  // long? | userId
+            var userId = 789;  // long? | User Id whose subcribtions want tp get.
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescdescription<br/>4)startDate<br/><b>A) Available values-</b><br/>1)groupId<br/>2)groupName<br/>3)description<br/>4)startDate<br/>5)ideasCount<br/>6)followersCount<br/>7)currentUserFollowing<br/>8)dueDate<br/>9)participantsCount<br/>10)friendsParticipantsCount<br/>11)friendsIdeasCount (optional)  (default to groupId,groupName,description,startDate)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to discussionId,discussionSubject,discussionDescription,createdDate )
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of discussions subscribed by user
-                VerveResponseGroupList result = apiInstance.GetUserSubscribedDiscussions(userId, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseDiscussionList result = apiInstance.GetUserSubscribedDiscussions(userId, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -893,17 +893,17 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
+ **userId** | **long?**| User Id whose subcribtions want tp get. | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescdescription&lt;br/&gt;4)startDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)groupId&lt;br/&gt;2)groupName&lt;br/&gt;3)description&lt;br/&gt;4)startDate&lt;br/&gt;5)ideasCount&lt;br/&gt;6)followersCount&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)dueDate&lt;br/&gt;9)participantsCount&lt;br/&gt;10)friendsParticipantsCount&lt;br/&gt;11)friendsIdeasCount | [optional] [default to groupId,groupName,description,startDate]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to discussionId,discussionSubject,discussionDescription,createdDate ]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
-[**VerveResponseGroupList**](VerveResponseGroupList.md)
+[**VerveResponseDiscussionList**](VerveResponseDiscussionList.md)
 
 ### Authorization
 
@@ -918,11 +918,11 @@ Name | Type | Description  | Notes
 
 <a name="postblog"></a>
 # **PostBlog**
-> VerveResponseBlog PostBlog (long? organizationId, string blogTitle, string blogDescription, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseBlog PostBlog (string requesterId, string clientToken, Blog body = null, string accessToken = null)
 
 Post blog
 
-Allows the user to post a blog. Returns the posted blog
+This service allows a user to post a blog. The following fields(key:value) are required to be present in the Blog JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. association </br>2. title </br>3. description </br>
 
 ### Example
 ```csharp
@@ -943,17 +943,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaborationApi();
-            var organizationId = 789;  // long? | organizationId
-            var blogTitle = blogTitle_example;  // string | blogTitle
-            var blogDescription = blogDescription_example;  // string | blogDescription
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Blog(); // Blog |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Post blog
-                VerveResponseBlog result = apiInstance.PostBlog(organizationId, blogTitle, blogDescription, loggedInUserId, accessToken, clientToken);
+                VerveResponseBlog result = apiInstance.PostBlog(requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -969,12 +967,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **long?**| organizationId | 
- **blogTitle** | **string**| blogTitle | 
- **blogDescription** | **string**| blogDescription | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Blog**](Blog.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -986,18 +982,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="startdiscussion"></a>
 # **StartDiscussion**
-> VerveResponseDiscussion StartDiscussion (long? organizationId, string subject, string description, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseDiscussion StartDiscussion (string requesterId, string clientToken, Discussion body = null, string accessToken = null)
 
 Start discussion
 
-Allows the user to start discussion. Returns the started discussion
+This service allows a user to post a discussion. The following fields(key:value) are required to be present in the Discussion JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. association </br>2. subject </br>3. description </br>
 
 ### Example
 ```csharp
@@ -1018,17 +1014,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaborationApi();
-            var organizationId = 789;  // long? | organizationId
-            var subject = subject_example;  // string | subject
-            var description = description_example;  // string | description
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body = new Discussion(); // Discussion |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Start discussion
-                VerveResponseDiscussion result = apiInstance.StartDiscussion(organizationId, subject, description, loggedInUserId, accessToken, clientToken);
+                VerveResponseDiscussion result = apiInstance.StartDiscussion(requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1044,12 +1038,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organizationId** | **long?**| organizationId | 
- **subject** | **string**| subject | 
- **description** | **string**| description | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body** | [**Discussion**](Discussion.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1061,14 +1053,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="subscribeblog"></a>
 # **SubscribeBlog**
-> VerveResponseBlog SubscribeBlog (long? blogId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseBlog SubscribeBlog (long? blogId, string requesterId, string clientToken, string accessToken = null)
 
 Subscribe blog
 
@@ -1094,14 +1086,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var blogId = 789;  // long? | blogId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Subscribe blog
-                VerveResponseBlog result = apiInstance.SubscribeBlog(blogId, loggedInUserId, accessToken, clientToken);
+                VerveResponseBlog result = apiInstance.SubscribeBlog(blogId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1118,9 +1110,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **blogId** | **long?**| blogId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1139,7 +1131,7 @@ Name | Type | Description  | Notes
 
 <a name="subscribediscussion"></a>
 # **SubscribeDiscussion**
-> VerveResponseDiscussion SubscribeDiscussion (long? discussionId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseDiscussion SubscribeDiscussion (long? discussionId, string requesterId, string clientToken, string accessToken = null)
 
 Subscribe discussion
 
@@ -1165,14 +1157,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var discussionId = 789;  // long? | discussionId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Subscribe discussion
-                VerveResponseDiscussion result = apiInstance.SubscribeDiscussion(discussionId, loggedInUserId, accessToken, clientToken);
+                VerveResponseDiscussion result = apiInstance.SubscribeDiscussion(discussionId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1189,9 +1181,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **discussionId** | **long?**| discussionId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1210,7 +1202,7 @@ Name | Type | Description  | Notes
 
 <a name="unsubscribeblog"></a>
 # **UnsubscribeBlog**
-> VerveResponseBlog UnsubscribeBlog (long? blogId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseBlog UnsubscribeBlog (long? blogId, string requesterId, string clientToken, string accessToken = null)
 
 Unsubscribe blog
 
@@ -1236,14 +1228,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var blogId = 789;  // long? | blogId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unsubscribe blog
-                VerveResponseBlog result = apiInstance.UnsubscribeBlog(blogId, loggedInUserId, accessToken, clientToken);
+                VerveResponseBlog result = apiInstance.UnsubscribeBlog(blogId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1260,9 +1252,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **blogId** | **long?**| blogId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1281,7 +1273,7 @@ Name | Type | Description  | Notes
 
 <a name="unsubscribediscussion"></a>
 # **UnsubscribeDiscussion**
-> VerveResponseDiscussion UnsubscribeDiscussion (long? discussionId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseDiscussion UnsubscribeDiscussion (long? discussionId, string requesterId, string clientToken, string accessToken = null)
 
 Unsubscribe discussion
 
@@ -1307,14 +1299,14 @@ namespace Example
 
             var apiInstance = new CollaborationApi();
             var discussionId = 789;  // long? | discussionId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unsubscribe discussion
-                VerveResponseDiscussion result = apiInstance.UnsubscribeDiscussion(discussionId, loggedInUserId, accessToken, clientToken);
+                VerveResponseDiscussion result = apiInstance.UnsubscribeDiscussion(discussionId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1331,9 +1323,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **discussionId** | **long?**| discussionId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1352,7 +1344,7 @@ Name | Type | Description  | Notes
 
 <a name="updateblog"></a>
 # **UpdateBlog**
-> VerveResponseBlog UpdateBlog (long? blogId, string blogTitle, string blogDescription, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseBlog UpdateBlog (long? blogId, string blogTitle, string blogDescription, string requesterId, string clientToken, string accessToken = null)
 
 Update blog
 
@@ -1380,14 +1372,14 @@ namespace Example
             var blogId = 789;  // long? | blogId
             var blogTitle = blogTitle_example;  // string | blog title
             var blogDescription = blogDescription_example;  // string | blog description
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update blog
-                VerveResponseBlog result = apiInstance.UpdateBlog(blogId, blogTitle, blogDescription, loggedInUserId, accessToken, clientToken);
+                VerveResponseBlog result = apiInstance.UpdateBlog(blogId, blogTitle, blogDescription, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1406,9 +1398,9 @@ Name | Type | Description  | Notes
  **blogId** | **long?**| blogId | 
  **blogTitle** | **string**| blog title | 
  **blogDescription** | **string**| blog description | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1427,7 +1419,7 @@ Name | Type | Description  | Notes
 
 <a name="updateblogcomment"></a>
 # **UpdateBlogComment**
-> VerveResponseComment UpdateBlogComment (long? commentId, string commentText, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseComment UpdateBlogComment (long? commentId, string commentText, string requesterId, string clientToken, string accessToken = null)
 
 Update blog comment
 
@@ -1454,14 +1446,14 @@ namespace Example
             var apiInstance = new CollaborationApi();
             var commentId = 789;  // long? | commentId
             var commentText = commentText_example;  // string | comment text
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update blog comment
-                VerveResponseComment result = apiInstance.UpdateBlogComment(commentId, commentText, loggedInUserId, accessToken, clientToken);
+                VerveResponseComment result = apiInstance.UpdateBlogComment(commentId, commentText, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1479,9 +1471,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **long?**| commentId | 
  **commentText** | **string**| comment text | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1500,7 +1492,7 @@ Name | Type | Description  | Notes
 
 <a name="updatediscussion"></a>
 # **UpdateDiscussion**
-> VerveResponseDiscussion UpdateDiscussion (long? discussionId, string subject, string discussionDescription, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseDiscussion UpdateDiscussion (long? discussionId, string subject, string discussionDescription, string requesterId, string clientToken, string accessToken = null)
 
 Update discussion
 
@@ -1528,14 +1520,14 @@ namespace Example
             var discussionId = 789;  // long? | discussionId
             var subject = subject_example;  // string | subject
             var discussionDescription = discussionDescription_example;  // string | discussion Description
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update discussion
-                VerveResponseDiscussion result = apiInstance.UpdateDiscussion(discussionId, subject, discussionDescription, loggedInUserId, accessToken, clientToken);
+                VerveResponseDiscussion result = apiInstance.UpdateDiscussion(discussionId, subject, discussionDescription, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1554,9 +1546,9 @@ Name | Type | Description  | Notes
  **discussionId** | **long?**| discussionId | 
  **subject** | **string**| subject | 
  **discussionDescription** | **string**| discussion Description | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -1575,7 +1567,7 @@ Name | Type | Description  | Notes
 
 <a name="updatediscussioncomment"></a>
 # **UpdateDiscussionComment**
-> VerveResponseDiscussion UpdateDiscussionComment (long? commentId, string commentText, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseDiscussion UpdateDiscussionComment (long? commentId, string commentText, string requesterId, string clientToken, string accessToken = null)
 
 Update discussion comment
 
@@ -1602,14 +1594,14 @@ namespace Example
             var apiInstance = new CollaborationApi();
             var commentId = 789;  // long? | commentId
             var commentText = commentText_example;  // string | comment text
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Update discussion comment
-                VerveResponseDiscussion result = apiInstance.UpdateDiscussionComment(commentId, commentText, loggedInUserId, accessToken, clientToken);
+                VerveResponseDiscussion result = apiInstance.UpdateDiscussionComment(commentId, commentText, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1627,9 +1619,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **commentId** | **long?**| commentId | 
  **commentText** | **string**| comment text | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

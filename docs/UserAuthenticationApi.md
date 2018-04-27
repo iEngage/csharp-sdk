@@ -1,9 +1,10 @@
 # IO.IEngage.Api.UserAuthenticationApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AddNotificationRegisteredId**](UserAuthenticationApi.md#addnotificationregisteredid) | **POST** /devices | Add device token
 [**AddUser**](UserAuthenticationApi.md#adduser) | **POST** /users | Add/Register new user
 [**Authenticate**](UserAuthenticationApi.md#authenticate) | **GET** /authenticate | Authenticate User
 [**ChangePassword**](UserAuthenticationApi.md#changepassword) | **PUT** /users/password | Change password
@@ -12,6 +13,79 @@ Method | HTTP request | Description
 [**GetAssociations**](UserAuthenticationApi.md#getassociations) | **GET** /associations | Get list of associations
 [**Logout**](UserAuthenticationApi.md#logout) | **GET** /logout | Logout
 
+
+<a name="addnotificationregisteredid"></a>
+# **AddNotificationRegisteredId**
+> bool? AddNotificationRegisteredId (string registeredId, string type, string clientToken, string requesterId = null, string accessToken = null)
+
+Add device token
+
+Add device token to push notification from server
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.IEngage.Api;
+using IO.IEngage.Client;
+using IO.IEngage.Model;
+
+namespace Example
+{
+    public class AddNotificationRegisteredIdExample
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: default
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new UserAuthenticationApi();
+            var registeredId = registeredId_example;  // string | Registered device token to be added
+            var type = type_example;  // string | Type of device android, ios
+            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address. (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
+
+            try
+            {
+                // Add device token
+                bool? result = apiInstance.AddNotificationRegisteredId(registeredId, type, clientToken, requesterId, accessToken);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserAuthenticationApi.AddNotificationRegisteredId: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registeredId** | **string**| Registered device token to be added | 
+ **type** | **string**| Type of device android, ios | 
+ **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
+
+### Return type
+
+**bool?**
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="adduser"></a>
 # **AddUser**
@@ -169,7 +243,7 @@ Name | Type | Description  | Notes
 
 <a name="changepassword"></a>
 # **ChangePassword**
-> bool? ChangePassword (string currentPassword, string newPassword, string loggedInUserId, string accessToken, string clientToken)
+> bool? ChangePassword (string currentPassword, string newPassword, string requesterId, string clientToken, string accessToken = null)
 
 Change password
 
@@ -196,14 +270,14 @@ namespace Example
             var apiInstance = new UserAuthenticationApi();
             var currentPassword = currentPassword_example;  // string | Current password
             var newPassword = newPassword_example;  // string | New password
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Change password
-                bool? result = apiInstance.ChangePassword(currentPassword, newPassword, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.ChangePassword(currentPassword, newPassword, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -221,9 +295,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currentPassword** | **string**| Current password | 
  **newPassword** | **string**| New password | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -242,7 +316,7 @@ Name | Type | Description  | Notes
 
 <a name="createassociation"></a>
 # **CreateAssociation**
-> VerveResponseAssociation CreateAssociation (string name, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseAssociation CreateAssociation (string name, string requesterId, string clientToken, string accessToken = null)
 
 Create association
 
@@ -268,14 +342,14 @@ namespace Example
 
             var apiInstance = new UserAuthenticationApi();
             var name = name_example;  // string | association name
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Create association
-                VerveResponseAssociation result = apiInstance.CreateAssociation(name, loggedInUserId, accessToken, clientToken);
+                VerveResponseAssociation result = apiInstance.CreateAssociation(name, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -292,9 +366,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| association name | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -380,7 +454,7 @@ Name | Type | Description  | Notes
 
 <a name="getassociations"></a>
 # **GetAssociations**
-> VerveResponseAssociationList GetAssociations (string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseAssociationList GetAssociations (string requesterId, string clientToken, string accessToken = null)
 
 Get list of associations
 
@@ -405,14 +479,14 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UserAuthenticationApi();
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of associations
-                VerveResponseAssociationList result = apiInstance.GetAssociations(loggedInUserId, accessToken, clientToken);
+                VerveResponseAssociationList result = apiInstance.GetAssociations(requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -428,9 +502,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -449,7 +523,7 @@ Name | Type | Description  | Notes
 
 <a name="logout"></a>
 # **Logout**
-> bool? Logout (string loggedInUserId, string accessToken, string clientToken)
+> bool? Logout (string requesterId, string clientToken, string accessToken = null)
 
 Logout
 
@@ -474,14 +548,14 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UserAuthenticationApi();
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Logout
-                bool? result = apiInstance.Logout(loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.Logout(requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -497,9 +571,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

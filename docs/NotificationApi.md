@@ -1,6 +1,6 @@
 # IO.IEngage.Api.NotificationApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,11 +13,11 @@ Method | HTTP request | Description
 
 <a name="addnotification"></a>
 # **AddNotification**
-> bool? AddNotification (string title, string body, string extraData, string loggedInUserId, string accessToken, string clientToken, string role = null, string emailAddress = null)
+> bool? AddNotification (string requesterId, string clientToken, Notification body = null, string accessToken = null)
 
 Create custom notification
 
-Allows the user to mark the notification as read
+This service allows a user to create a notification. The following fields(key:value) are required to be present in the Notification JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. title </br>2. body </br>3. extraData </br>4. roleName OR toUser: { emailId }
 
 ### Example
 ```csharp
@@ -38,19 +38,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new NotificationApi();
-            var title = title_example;  // string | notification title
-            var body = body_example;  // string | notification body
-            var extraData = extraData_example;  // string | Extra information. You can send json string if want to store more than one parameter
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var role = role_example;  // string | Role/Group name (optional) 
-            var emailAddress = emailAddress_example;  // string | EmailAddress of user (optional) 
+            var body = new Notification(); // Notification |  (optional) 
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Create custom notification
-                bool? result = apiInstance.AddNotification(title, body, extraData, loggedInUserId, accessToken, clientToken, role, emailAddress);
+                bool? result = apiInstance.AddNotification(requesterId, clientToken, body, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -66,14 +62,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **title** | **string**| notification title | 
- **body** | **string**| notification body | 
- **extraData** | **string**| Extra information. You can send json string if want to store more than one parameter | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **role** | **string**| Role/Group name | [optional] 
- **emailAddress** | **string**| EmailAddress of user | [optional] 
+ **body** | [**Notification**](Notification.md)|  | [optional] 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -85,14 +77,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getnotifications"></a>
 # **GetNotifications**
-> VerveResponseNotificationList GetNotifications (string type, int? start, int? end, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseNotificationList GetNotifications (string type, int? start, int? end, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of notifications
 
@@ -120,15 +112,15 @@ namespace Example
             var type = type_example;  // string | Type of count<br/> 1) UNREAD <br/> 2) READ <br/> 3)ALL (default to ALL)
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)notificationId<br/>2)message<br/>3)isRead<br/>4)date<br/><b>A) Available values-</b><br/>1)notificationId<br/>2)message<br/>3)isRead<br/>4)date<br/>5)type<br/>6)byUser<br/>7)entity<br/>8)parentEntity (optional)  (default to notificationId,message,isRead,date)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of notifications
-                VerveResponseNotificationList result = apiInstance.GetNotifications(type, start, end, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseNotificationList result = apiInstance.GetNotifications(type, start, end, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -147,10 +139,10 @@ Name | Type | Description  | Notes
  **type** | **string**| Type of count&lt;br/&gt; 1) UNREAD &lt;br/&gt; 2) READ &lt;br/&gt; 3)ALL | [default to ALL]
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)notificationId&lt;br/&gt;2)message&lt;br/&gt;3)isRead&lt;br/&gt;4)date&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)notificationId&lt;br/&gt;2)message&lt;br/&gt;3)isRead&lt;br/&gt;4)date&lt;br/&gt;5)type&lt;br/&gt;6)byUser&lt;br/&gt;7)entity&lt;br/&gt;8)parentEntity | [optional] [default to notificationId,message,isRead,date]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -169,7 +161,7 @@ Name | Type | Description  | Notes
 
 <a name="markallnotificationasread"></a>
 # **MarkAllNotificationAsRead**
-> bool? MarkAllNotificationAsRead (string loggedInUserId, string accessToken, string clientToken)
+> bool? MarkAllNotificationAsRead (string requesterId, string clientToken, string accessToken = null)
 
 Mark all notification as read
 
@@ -194,14 +186,14 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new NotificationApi();
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Mark all notification as read
-                bool? result = apiInstance.MarkAllNotificationAsRead(loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.MarkAllNotificationAsRead(requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -217,9 +209,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -238,7 +230,7 @@ Name | Type | Description  | Notes
 
 <a name="marknotificationasread"></a>
 # **MarkNotificationAsRead**
-> bool? MarkNotificationAsRead (long? notificationId, string loggedInUserId, string accessToken, string clientToken)
+> bool? MarkNotificationAsRead (long? notificationId, string requesterId, string clientToken, string accessToken = null)
 
 Mark notification as read
 
@@ -264,14 +256,14 @@ namespace Example
 
             var apiInstance = new NotificationApi();
             var notificationId = 789;  // long? | notification Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Mark notification as read
-                bool? result = apiInstance.MarkNotificationAsRead(notificationId, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.MarkNotificationAsRead(notificationId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -288,9 +280,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notificationId** | **long?**| notification Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -309,7 +301,7 @@ Name | Type | Description  | Notes
 
 <a name="notificationcount"></a>
 # **NotificationCount**
-> long? NotificationCount (string type, string loggedInUserId, string accessToken, string clientToken)
+> long? NotificationCount (string type, string requesterId, string clientToken, string accessToken = null)
 
 Get notifications count
 
@@ -335,14 +327,14 @@ namespace Example
 
             var apiInstance = new NotificationApi();
             var type = type_example;  // string | Type of count<br/> 1) UNREAD <br/> 2) READ <br/> 3)ALL (default to ALL)
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get notifications count
-                long? result = apiInstance.NotificationCount(type, loggedInUserId, accessToken, clientToken);
+                long? result = apiInstance.NotificationCount(type, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -359,9 +351,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **string**| Type of count&lt;br/&gt; 1) UNREAD &lt;br/&gt; 2) READ &lt;br/&gt; 3)ALL | [default to ALL]
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

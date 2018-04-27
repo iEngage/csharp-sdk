@@ -1,6 +1,6 @@
 # IO.IEngage.Api.SocialApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 <a name="addfriend"></a>
 # **AddFriend**
-> bool? AddFriend (string id1, string id2, string loggedInUserId, string accessToken, string clientToken)
+> bool? AddFriend (string id1, string id2, string requesterId, string clientToken, string accessToken = null)
 
 Add Friend
 
@@ -47,14 +47,14 @@ namespace Example
             var apiInstance = new SocialApi();
             var id1 = id1_example;  // string | Enter userId/mailId of the person who wants to add a friend
             var id2 = id2_example;  // string | Enter userId /mailId you want to add in friend list
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Add Friend
-                bool? result = apiInstance.AddFriend(id1, id2, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.AddFriend(id1, id2, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -72,9 +72,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id1** | **string**| Enter userId/mailId of the person who wants to add a friend | 
  **id2** | **string**| Enter userId /mailId you want to add in friend list | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 <a name="confirmfriendrequest"></a>
 # **ConfirmFriendRequest**
-> bool? ConfirmFriendRequest (long? userId, int? status, string loggedInUserId, string accessToken, string clientToken)
+> bool? ConfirmFriendRequest (long? userId, int? status, string requesterId, string clientToken, string accessToken = null)
 
 confirm/ignore friend request
 
@@ -120,14 +120,14 @@ namespace Example
             var apiInstance = new SocialApi();
             var userId = 789;  // long? | userId of user who sent friend request
             var status = 56;  // int? | Set Friend Request status <br/> CONFIRM - 1  <br/> IGNORE - 2 
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // confirm/ignore friend request
-                bool? result = apiInstance.ConfirmFriendRequest(userId, status, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.ConfirmFriendRequest(userId, status, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -145,9 +145,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| userId of user who sent friend request | 
  **status** | **int?**| Set Friend Request status &lt;br/&gt; CONFIRM - 1  &lt;br/&gt; IGNORE - 2  | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 <a name="follow"></a>
 # **Follow**
-> bool? Follow (string follower, string followee, string loggedInUserId, string accessToken, string clientToken)
+> bool? Follow (string follower, string followee, string requesterId, string clientToken, string accessToken = null)
 
 Follow user
 
@@ -193,14 +193,14 @@ namespace Example
             var apiInstance = new SocialApi();
             var follower = follower_example;  // string | Enter the userId/mailId of the follower
             var followee = followee_example;  // string | Enter the userId/mailId of the user the follower wants to follow
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Follow user
-                bool? result = apiInstance.Follow(follower, followee, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.Follow(follower, followee, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -218,9 +218,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **follower** | **string**| Enter the userId/mailId of the follower | 
  **followee** | **string**| Enter the userId/mailId of the user the follower wants to follow | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 <a name="getuser"></a>
 # **GetUser**
-> VerveResponseUser GetUser (long? userId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseUser GetUser (long? userId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get user by id 
 
@@ -265,15 +265,15 @@ namespace Example
 
             var apiInstance = new SocialApi();
             var userId = 789;  // long? | User Id
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/>7)currentUserFollowing<br/>8)currentUserFriend<br/>9)equityScore (optional)  (default to userId,firstName,lastName,profileImage)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName,profileImage)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get user by id 
-                VerveResponseUser result = apiInstance.GetUser(userId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseUser result = apiInstance.GetUser(userId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -290,10 +290,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)currentUserFriend&lt;br/&gt;9)equityScore | [optional] [default to userId,firstName,lastName,profileImage]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName,profileImage]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserdetail"></a>
 # **GetUserDetail**
-> VerveResponseUserDetail GetUserDetail (long? userId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseUserDetail GetUserDetail (long? userId, string requesterId, string clientToken, string accessToken = null)
 
 Get user details 
 
@@ -338,14 +338,14 @@ namespace Example
 
             var apiInstance = new SocialApi();
             var userId = 789;  // long? | Enter user Id whose details you need
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get user details 
-                VerveResponseUserDetail result = apiInstance.GetUserDetail(userId, loggedInUserId, accessToken, clientToken);
+                VerveResponseUserDetail result = apiInstance.GetUserDetail(userId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -362,9 +362,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| Enter user Id whose details you need | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserfollowers"></a>
 # **GetUserFollowers**
-> VerveResponseUserList GetUserFollowers (long? userId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseUserList GetUserFollowers (long? userId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of followers
 
@@ -408,16 +408,16 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new SocialApi();
-            var userId = 789;  // long? | userId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var userId = 789;  // long? | User Id whose followers wants to get.
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/>7)currentUserFollowing<br/>8)currentUserFriend<br/>9)equityScore (optional)  (default to userId,firstName,lastName,profileImage)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName,profileImage)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of followers
-                VerveResponseUserList result = apiInstance.GetUserFollowers(userId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseUserList result = apiInstance.GetUserFollowers(userId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -433,11 +433,11 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **userId** | **long?**| User Id whose followers wants to get. | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)currentUserFriend&lt;br/&gt;9)equityScore | [optional] [default to userId,firstName,lastName,profileImage]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName,profileImage]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserfollowing"></a>
 # **GetUserFollowing**
-> VerveResponseUserList GetUserFollowing (long? userId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseUserList GetUserFollowing (long? userId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of users that are being followed
 
@@ -481,16 +481,16 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new SocialApi();
-            var userId = 789;  // long? | userId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var userId = 789;  // long? | User Id whose followed list want to get
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/>7)currentUserFollowing<br/>8)currentUserFriend<br/>9)equityScore (optional)  (default to userId,firstName,lastName,profileImage)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName,profileImage)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of users that are being followed
-                VerveResponseUserList result = apiInstance.GetUserFollowing(userId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseUserList result = apiInstance.GetUserFollowing(userId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -506,11 +506,11 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **userId** | **long?**| User Id whose followed list want to get | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)currentUserFriend&lt;br/&gt;9)equityScore | [optional] [default to userId,firstName,lastName,profileImage]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName,profileImage]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -529,7 +529,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserfriends"></a>
 # **GetUserFriends**
-> VerveResponseUserList GetUserFriends (long? userId, string loggedInUserId, string accessToken, string clientToken, string fields = null)
+> VerveResponseUserList GetUserFriends (long? userId, string requesterId, string clientToken, string fields = null, string accessToken = null)
 
 Get list of friends
 
@@ -555,15 +555,15 @@ namespace Example
 
             var apiInstance = new SocialApi();
             var userId = 789;  // long? | userId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/>7)currentUserFollowing<br/>8)currentUserFriend<br/>9)equityScore (optional)  (default to userId,firstName,lastName,profileImage)
+            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName,profileImage)
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of friends
-                VerveResponseUserList result = apiInstance.GetUserFriends(userId, loggedInUserId, accessToken, clientToken, fields);
+                VerveResponseUserList result = apiInstance.GetUserFriends(userId, requesterId, clientToken, fields, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -580,10 +580,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| userId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt;7)currentUserFollowing&lt;br/&gt;8)currentUserFriend&lt;br/&gt;9)equityScore | [optional] [default to userId,firstName,lastName,profileImage]
+ **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName,profileImage]
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -602,7 +602,7 @@ Name | Type | Description  | Notes
 
 <a name="removefriend"></a>
 # **RemoveFriend**
-> bool? RemoveFriend (string id1, string id2, string loggedInUserId, string accessToken, string clientToken)
+> bool? RemoveFriend (string id1, string id2, string requesterId, string clientToken, string accessToken = null)
 
 Remove friend 
 
@@ -629,14 +629,14 @@ namespace Example
             var apiInstance = new SocialApi();
             var id1 = id1_example;  // string | Enter userId/mailId of the person who wants to remove from friend
             var id2 = id2_example;  // string | Enter userId /mailId you want to remove in friend list
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Remove friend 
-                bool? result = apiInstance.RemoveFriend(id1, id2, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.RemoveFriend(id1, id2, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -654,9 +654,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id1** | **string**| Enter userId/mailId of the person who wants to remove from friend | 
  **id2** | **string**| Enter userId /mailId you want to remove in friend list | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -675,7 +675,7 @@ Name | Type | Description  | Notes
 
 <a name="requestfriend"></a>
 # **RequestFriend**
-> bool? RequestFriend (long? userId, string loggedInUserId, string accessToken, string clientToken)
+> bool? RequestFriend (long? userId, string requesterId, string clientToken, string accessToken = null)
 
 Send friend request
 
@@ -701,14 +701,14 @@ namespace Example
 
             var apiInstance = new SocialApi();
             var userId = 789;  // long? | Enter userId /mailId you want to send friend request
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Send friend request
-                bool? result = apiInstance.RequestFriend(userId, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.RequestFriend(userId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -725,9 +725,9 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| Enter userId /mailId you want to send friend request | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -746,7 +746,7 @@ Name | Type | Description  | Notes
 
 <a name="requestsforme"></a>
 # **RequestsForMe**
-> VerveResponseRequestForMeList RequestsForMe (string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseRequestForMeList RequestsForMe (string requesterId, string clientToken, string accessToken = null)
 
 Get list of friend requests
 
@@ -771,14 +771,14 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new SocialApi();
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of friend requests
-                VerveResponseRequestForMeList result = apiInstance.RequestsForMe(loggedInUserId, accessToken, clientToken);
+                VerveResponseRequestForMeList result = apiInstance.RequestsForMe(requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -794,9 +794,9 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -815,7 +815,7 @@ Name | Type | Description  | Notes
 
 <a name="unfollow"></a>
 # **Unfollow**
-> bool? Unfollow (string unfollower, string unfollowee, string loggedInUserId, string accessToken, string clientToken)
+> bool? Unfollow (string unfollower, string unfollowee, string requesterId, string clientToken, string accessToken = null)
 
 Unfollow user
 
@@ -842,14 +842,14 @@ namespace Example
             var apiInstance = new SocialApi();
             var unfollower = unfollower_example;  // string | Enter the userId/mailId of the unfollower
             var unfollowee = unfollowee_example;  // string | Enter the userId/mailId of the user the unfollower wants to unfollow
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Unfollow user
-                bool? result = apiInstance.Unfollow(unfollower, unfollowee, loggedInUserId, accessToken, clientToken);
+                bool? result = apiInstance.Unfollow(unfollower, unfollowee, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -867,9 +867,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **unfollower** | **string**| Enter the userId/mailId of the unfollower | 
  **unfollowee** | **string**| Enter the userId/mailId of the user the unfollower wants to unfollow | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 

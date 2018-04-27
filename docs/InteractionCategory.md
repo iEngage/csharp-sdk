@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **ModifiedDate** | **DateTime?** |  | [optional] 
 **Status** | **int?** |  | [optional] 
 **IsSubscribed** | **bool?** |  | [optional] [default to false]
+**AssociationId** | **string** |  | [optional] 
+**User** | [**User**](User.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

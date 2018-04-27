@@ -1,6 +1,6 @@
 # IO.IEngage.Api.RewardsApi
 
-All URIs are relative to *https://api.iengage.io:8243/api/1.0*
+All URIs are relative to *https://api.iengage.io:8243/api/2.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="gettopfriends"></a>
 # **GetTopFriends**
-> VerveResponseUserPointsList GetTopFriends (long? userId, int? start, int? end, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseUserPointsList GetTopFriends (long? userId, int? start, int? end, string requesterId, string clientToken, string accessToken = null)
 
 Get list of top friends
 
@@ -39,14 +39,14 @@ namespace Example
             var userId = 789;  // long? | userId
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of top friends
-                VerveResponseUserPointsList result = apiInstance.GetTopFriends(userId, start, end, loggedInUserId, accessToken, clientToken);
+                VerveResponseUserPointsList result = apiInstance.GetTopFriends(userId, start, end, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -65,9 +65,9 @@ Name | Type | Description  | Notes
  **userId** | **long?**| userId | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 <a name="gettopusers"></a>
 # **GetTopUsers**
-> VerveResponseUserPointsList GetTopUsers (int? start, int? end, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseUserPointsList GetTopUsers (int? start, int? end, string requesterId, string clientToken, string accessToken = null)
 
 Get list of top users
 
@@ -113,14 +113,14 @@ namespace Example
             var apiInstance = new RewardsApi();
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of top users
-                VerveResponseUserPointsList result = apiInstance.GetTopUsers(start, end, loggedInUserId, accessToken, clientToken);
+                VerveResponseUserPointsList result = apiInstance.GetTopUsers(start, end, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -138,9 +138,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserpoints"></a>
 # **GetUserPoints**
-> VerveResponseUserPoints GetUserPoints (long? userId, string loggedInUserId, string accessToken, string clientToken)
+> VerveResponseUserPoints GetUserPoints (long? userId, string requesterId, string clientToken, string accessToken = null)
 
 Get list of user points
 
@@ -184,15 +184,15 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RewardsApi();
-            var userId = 789;  // long? | userId
-            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
-            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var userId = 789;  // long? | User Id whose points wants to get
+            var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
             {
                 // Get list of user points
-                VerveResponseUserPoints result = apiInstance.GetUserPoints(userId, loggedInUserId, accessToken, clientToken);
+                VerveResponseUserPoints result = apiInstance.GetUserPoints(userId, requesterId, clientToken, accessToken);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -208,10 +208,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **long?**| userId | 
- **loggedInUserId** | **string**| User id of logged / authenticated user | 
- **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **userId** | **long?**| User Id whose points wants to get | 
+ **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
 
