@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Create custom notification
 
-This service allows a user to create a notification. The following fields(key:value) are required to be present in the Notification JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. title </br>2. body </br>3. extraData </br>4. roleName OR toUser: { emailId }
+This service allows a user to create a notification. The following fields(key:value) are required to be present in the Notification JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API. **Required fields**  1. title  2. body  3. extraData  4. roleName OR toUser: { emailId }
 
 ### Example
 ```csharp
@@ -109,12 +109,12 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new NotificationApi();
-            var type = type_example;  // string | Type of count<br/> 1) UNREAD <br/> 2) READ <br/> 3)ALL (default to ALL)
+            var type = type_example;  // string |   /_*   Type of count  1) UNREAD   2) READ   3)ALL   *_/ (default to ALL)
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)notificationId<br/>2)message<br/>3)isRead<br/>4)date<br/><b>A) Available values-</b><br/>1)notificationId<br/>2)message<br/>3)isRead<br/>4)date<br/>5)type<br/>6)byUser<br/>7)entity<br/>8)parentEntity (optional)  (default to notificationId,message,isRead,date)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)notificationId       2)message       3)isRead       4)date        **A) Available values-**        1)notificationId       2)message       3)isRead       4)date       5)type       6)byUser       7)entity       8)parentEntity /n *_/ (optional)  (default to notificationId,message,isRead,date)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -136,12 +136,12 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | **string**| Type of count&lt;br/&gt; 1) UNREAD &lt;br/&gt; 2) READ &lt;br/&gt; 3)ALL | [default to ALL]
+ **type** | **string**|   /_*   Type of count  1) UNREAD   2) READ   3)ALL   *_/ | [default to ALL]
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)notificationId&lt;br/&gt;2)message&lt;br/&gt;3)isRead&lt;br/&gt;4)date&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)notificationId&lt;br/&gt;2)message&lt;br/&gt;3)isRead&lt;br/&gt;4)date&lt;br/&gt;5)type&lt;br/&gt;6)byUser&lt;br/&gt;7)entity&lt;br/&gt;8)parentEntity | [optional] [default to notificationId,message,isRead,date]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)notificationId       2)message       3)isRead       4)date        **A) Available values-**        1)notificationId       2)message       3)isRead       4)date       5)type       6)byUser       7)entity       8)parentEntity /n *_/ | [optional] [default to notificationId,message,isRead,date]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -326,7 +326,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new NotificationApi();
-            var type = type_example;  // string | Type of count<br/> 1) UNREAD <br/> 2) READ <br/> 3)ALL (default to ALL)
+            var type = type_example;  // string |   /_*  Type of count  1) UNREAD   2) READ   3)ALL   *_/ (default to ALL)
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
@@ -350,7 +350,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | **string**| Type of count&lt;br/&gt; 1) UNREAD &lt;br/&gt; 2) READ &lt;br/&gt; 3)ALL | [default to ALL]
+ **type** | **string**|   /_*  Type of count  1) UNREAD   2) READ   3)ALL   *_/ | [default to ALL]
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 

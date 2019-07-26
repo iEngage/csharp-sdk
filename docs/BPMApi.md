@@ -46,7 +46,7 @@ namespace Example
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var comment = comment_example;  // string | comment (optional) 
             var dueDate = 789;  // long? | dueDate (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **comment** | **string**| comment | [optional] 
  **dueDate** | **long?**| dueDate | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -125,7 +125,7 @@ namespace Example
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var transition = transition_example;  // string | transition (optional) 
             var comment = comment_example;  // string | comment (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **transition** | **string**| transition | [optional] 
  **comment** | **string**| comment | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -202,7 +202,7 @@ namespace Example
             var taskId = 789;  // long? | taskId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
  **taskId** | **long?**| taskId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -275,15 +275,15 @@ namespace Example
             var apiInstance = new BPMApi();
             var userId = 789;  // long? | User Id whose tasks want to get
             var searchString = searchString_example;  // string | searchString
-            var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/>
-            var searchByUserRoles = true;  // bool? | 1) true - Assigned to roles <br/> 2) false - Assigned to user
+            var completed = true;  // bool? |   /_*   1) true - Completed   2) false - Pending   *_/
+            var searchByUserRoles = true;  // bool? |   /_*   1) true - Assigned to roles   2) false - Assigned to user   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var type = type_example;  // string | Type (optional) 
             var organizationId = 789;  // long? | organizationId (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -307,15 +307,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id whose tasks want to get | 
  **searchString** | **string**| searchString | 
- **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; | 
- **searchByUserRoles** | **bool?**| 1) true - Assigned to roles &lt;br/&gt; 2) false - Assigned to user | 
+ **completed** | **bool?**|   /_*   1) true - Completed   2) false - Pending   *_/ | 
+ **searchByUserRoles** | **bool?**|   /_*   1) true - Assigned to roles   2) false - Assigned to user   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **type** | **string**| Type | [optional] 
  **organizationId** | **long?**| organizationId | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -362,13 +362,13 @@ namespace Example
             var apiInstance = new BPMApi();
             var userId = 789;  // long? | User Id whose task want to see
             var entityId = 789;  // long? | entityId
-            var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/>
-            var searchByUserRoles = true;  // bool? | 1) true - Assigned to roles <br/> 2) false - Assigned to user
+            var completed = true;  // bool? |   /_*   1) true - Completed   2) false - Pending   *_/
+            var searchByUserRoles = true;  // bool? |   /_*   1) true - Assigned to roles   2) false - Assigned to user   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -392,13 +392,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id whose task want to see | 
  **entityId** | **long?**| entityId | 
- **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; | 
- **searchByUserRoles** | **bool?**| 1) true - Assigned to roles &lt;br/&gt; 2) false - Assigned to user | 
+ **completed** | **bool?**|   /_*   1) true - Completed   2) false - Pending   *_/ | 
+ **searchByUserRoles** | **bool?**|   /_*   1) true - Assigned to roles   2) false - Assigned to user   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -444,14 +444,14 @@ namespace Example
 
             var apiInstance = new BPMApi();
             var userId = 789;  // long? | User Id whose task want to see
-            var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/> 3) Blank - All
+            var completed = true;  // bool? |   /_*   Accepted Values   1) true - Completed   2) false - Pending   3) Blank - All   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var type = type_example;  // string | Type (optional) 
             var organizationId = 789;  // long? | organizationId (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -474,14 +474,14 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id whose task want to see | 
- **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; 3) Blank - All | 
+ **completed** | **bool?**|   /_*   Accepted Values   1) true - Completed   2) false - Pending   3) Blank - All   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **type** | **string**| Type | [optional] 
  **organizationId** | **long?**| organizationId | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -527,14 +527,14 @@ namespace Example
 
             var apiInstance = new BPMApi();
             var userId = 789;  // long? | User Id whose task want to see
-            var completed = true;  // bool? | 1) true - Completed <br/> 2) false - Pending <br/> 3) Blank - All
+            var completed = true;  // bool? |   /_*   1) true - Completed   2) false - Pending   3) Blank - All   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var type = type_example;  // string | Type (optional) 
             var organizationId = 789;  // long? | organizationId (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)name<br/>3)type<br/><b>A) Available values -</b> <br/>1)taskId<br/>2)name<br/>3)dueDate<br/>4)description<br/>5)transitionList<br/>6)type<br/>7)entityId<br/>8)attributes (optional)  (default to taskId,name,type)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ (optional)  (default to taskId,name,type)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -557,14 +557,14 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id whose task want to see | 
- **completed** | **bool?**| 1) true - Completed &lt;br/&gt; 2) false - Pending &lt;br/&gt; 3) Blank - All | 
+ **completed** | **bool?**|   /_*   1) true - Completed   2) false - Pending   3) Blank - All   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **type** | **string**| Type | [optional] 
  **organizationId** | **long?**| organizationId | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)type&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)name&lt;br/&gt;3)dueDate&lt;br/&gt;4)description&lt;br/&gt;5)transitionList&lt;br/&gt;6)type&lt;br/&gt;7)entityId&lt;br/&gt;8)attributes | [optional] [default to taskId,name,type]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)name       3)type        **A) Available values -**         1)taskId       2)name       3)dueDate       4)description       5)transitionList       6)type       7)entityId       8)attributes   *_/ | [optional] [default to taskId,name,type]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type

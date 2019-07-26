@@ -34,7 +34,7 @@ Method | HTTP request | Description
 
 Comment on posted blog
 
-This service allows a user to comment on a blog. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. blogId (Path Parameter)</br>2. commentText </br>
+This service allows a user to comment on a blog. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API. **Required fields**      1. blogId (Path Parameter)     2. commentText
 
 ### Example
 ```csharp
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 Comment on discussion
 
-This service allows a user to comment on a discussion. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. discussionId (Path Parameter)</br>2. commentText </br>
+This service allows a user to comment on a discussion. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API. **Required fields**      1. discussionId (Path Parameter)     2. commentText
 
 ### Example
 ```csharp
@@ -565,7 +565,7 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/><b>A )Available values-</b><br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to blogId,blogTitle,blogDescription,createdDate)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate        **A )Available values-**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ (optional)  (default to blogId,blogTitle,blogDescription,createdDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -592,7 +592,7 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A )Available values-&lt;/b&gt;&lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to blogId,blogTitle,blogDescription,createdDate]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate        **A )Available values-**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ | [optional] [default to blogId,blogTitle,blogDescription,createdDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -717,7 +717,7 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to discussionId,discussionSubject,discussionDescription,createdDate )
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate        **A) Available values-**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ (optional)  (default to discussionId,discussionSubject,discussionDescription,createdDate )
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to discussionId,discussionSubject,discussionDescription,createdDate ]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate        **A) Available values-**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ | [optional] [default to discussionId,discussionSubject,discussionDescription,createdDate ]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -794,7 +794,7 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/><b>A )Available values-</b><br/>1)blogId<br/>2)blogTitle<br/>3)blogDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to blogId,blogTitle,blogDescription,createdDate)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate        **A )Available values-**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ (optional)  (default to blogId,blogTitle,blogDescription,createdDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -821,7 +821,7 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A )Available values-&lt;/b&gt;&lt;br/&gt;1)blogId&lt;br/&gt;2)blogTitle&lt;br/&gt;3)blogDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to blogId,blogTitle,blogDescription,createdDate]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate        **A )Available values-**        1)blogId       2)blogTitle       3)blogDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ | [optional] [default to blogId,blogTitle,blogDescription,createdDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -871,7 +871,7 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)discussionId<br/>2)discussionSubject<br/>3)discussionDescription<br/>4)createdDate<br/>5)user<br/>6)sentiment</br>7)entity (optional)  (default to discussionId,discussionSubject,discussionDescription,createdDate )
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate        **A) Available values-**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ (optional)  (default to discussionId,discussionSubject,discussionDescription,createdDate )
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -898,7 +898,7 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)discussionId&lt;br/&gt;2)discussionSubject&lt;br/&gt;3)discussionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)user&lt;br/&gt;6)sentiment&lt;/br&gt;7)entity | [optional] [default to discussionId,discussionSubject,discussionDescription,createdDate ]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate        **A) Available values-**        1)discussionId       2)discussionSubject       3)discussionDescription       4)createdDate       5)user       6)sentiment       7)entity   *_/ | [optional] [default to discussionId,discussionSubject,discussionDescription,createdDate ]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -922,7 +922,7 @@ Name | Type | Description  | Notes
 
 Post blog
 
-This service allows a user to post a blog. The following fields(key:value) are required to be present in the Blog JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. association </br>2. title </br>3. description </br>
+This service allows a user to post a blog. The following fields(key:value) are required to be present in the Blog JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API. **Required fields** 1. association      2. title      3. description
 
 ### Example
 ```csharp
@@ -993,7 +993,7 @@ Name | Type | Description  | Notes
 
 Start discussion
 
-This service allows a user to post a discussion. The following fields(key:value) are required to be present in the Discussion JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. association </br>2. subject </br>3. description </br>
+This service allows a user to post a discussion. The following fields(key:value) are required to be present in the Discussion JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API. **Required fields**      1. association      2. subject      3. description
 
 ### Example
 ```csharp

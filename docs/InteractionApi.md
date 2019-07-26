@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**AddInteraction**](InteractionApi.md#addinteraction) | **POST** /interactions | Share interaction without attachment
 [**AddInteraction_0**](InteractionApi.md#addinteraction_0) | **POST** /interactions/attachment | Share interaction with attachment
 [**AddResponse**](InteractionApi.md#addresponse) | **POST** /interactions/{interactionId}/responses | Response the specified interaction
+[**AddResponse_0**](InteractionApi.md#addresponse_0) | **POST** /interactions/{interactionId}/responses/attachment | Response the specified interaction
 [**ChangeInteractionCategory**](InteractionApi.md#changeinteractioncategory) | **PUT** /interactions/{interactionId}/{categoryId} | Change interaction category
 [**ChangeInteractionType**](InteractionApi.md#changeinteractiontype) | **PUT** /interactions/{interactionId}/type | Change interaction type
 [**CreateInteractionCategory**](InteractionApi.md#createinteractioncategory) | **POST** /interactions/categories | Create interaction category
@@ -44,7 +45,7 @@ Method | HTTP request | Description
 
 Share interaction without attachment
 
-This service allows a user to post an interaction. The following fields(key:value) are required to be present in the Interaction JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. interactionTitle </br>
+This service allows a user to post an interaction. The following fields(key:value) are required to be present in the Interaction JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.      **Required fields**      1. interactionTitle     
 
 ### Example
 ```csharp
@@ -137,7 +138,7 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var interactionTitle = interactionTitle_example;  // string | interactionTitle
-            var file = /path/to/file.txt;  // System.IO.Stream | file
+            var file = new System.IO.Stream(); // System.IO.Stream | file
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var categoryId = categoryId_example;  // string | categoryId (optional) 
@@ -166,7 +167,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **interactionTitle** | **string**| interactionTitle | 
- **file** | **System.IO.Stream****System.IO.Stream**| file | 
+ **file** | **System.IO.Stream**| file | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **categoryId** | **string**| categoryId | [optional] 
@@ -196,7 +197,7 @@ Name | Type | Description  | Notes
 
 Response the specified interaction
 
-This service allows a user to post a response on an interaction. The following fields(key:value) are required to be present in the Response JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. interactionId (Path Parameter)</br>2. responseDescription </br>
+This service allows a user to post a response on an interaction. The following fields(key:value) are required to be present in the Response JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.      **Required fields**     1. interactionId (Path Parameter)     2. responseDescription     
 
 ### Example
 ```csharp
@@ -263,6 +264,83 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="addresponse_0"></a>
+# **AddResponse_0**
+> VerveResponseInteractionResponse AddResponse_0 (long? body, string body2, string loggedInUserId, string accessToken, string clientToken, string body3 = null, List<Attachment> body4 = null)
+
+Response the specified interaction
+
+Allows the user to response the interaction
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.IEngage.Api;
+using IO.IEngage.Client;
+using IO.IEngage.Model;
+
+namespace Example
+{
+    public class AddResponse_0Example
+    {
+        public void main()
+        {
+            
+            // Configure OAuth2 access token for authorization: default
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new InteractionApi();
+            var body = 789;  // long? | interactionId
+            var body2 = body_example;  // string | response
+            var loggedInUserId = loggedInUserId_example;  // string | User id of logged / authenticated user
+            var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate
+            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
+            var body3 = body_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional) 
+            var body4 = new List<Attachment>(); // List<Attachment> |  (optional) 
+
+            try
+            {
+                // Response the specified interaction
+                VerveResponseInteractionResponse result = apiInstance.AddResponse_0(body, body2, loggedInUserId, accessToken, clientToken, body3, body4);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteractionApi.AddResponse_0: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **long?**| interactionId | 
+ **body2** | **string**| response | 
+ **loggedInUserId** | **string**| User id of logged / authenticated user | 
+ **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | 
+ **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
+ **body3** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] 
+ **body4** | [**List<Attachment>**](Attachment.md)|  | [optional] 
+
+### Return type
+
+[**VerveResponseInteractionResponse**](VerveResponseInteractionResponse.md)
+
+### Authorization
+
+[default](../README.md#default)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="changeinteractioncategory"></a>
 # **ChangeInteractionCategory**
 > VerveResponseInteraction ChangeInteractionCategory (long? interactionId, long? categoryId, string requesterId, string clientToken, string fields = null, string accessToken = null)
@@ -294,7 +372,7 @@ namespace Example
             var categoryId = 789;  // long? | New interaction categoryId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -320,7 +398,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| New interaction categoryId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -369,7 +447,7 @@ namespace Example
             var interactionType = interactionType_example;  // string | New interaction type
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -395,7 +473,7 @@ Name | Type | Description  | Notes
  **interactionType** | **string**| New interaction type | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -419,7 +497,7 @@ Name | Type | Description  | Notes
 
 Create interaction category
 
-This service allows a user to create a category. The following fields(key:value) are required to be present in the Category JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. associationId </br>2. categoryName </br>3. interactionType </br>
+This service allows a user to create a category. The following fields(key:value) are required to be present in the Category JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.      **Required fields**      1. associationId      2. categoryName      3. interactionType     
 
 ### Example
 ```csharp
@@ -514,7 +592,7 @@ namespace Example
             var interactionId = 789;  // long? | interactionId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -539,7 +617,7 @@ Name | Type | Description  | Notes
  **interactionId** | **long?**| interactionId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -587,7 +665,7 @@ namespace Example
             var categoryId = 789;  // long? | categoryId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ (optional)  (default to categoryId,categoryName,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -612,7 +690,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| categoryId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ | [optional] [default to categoryId,categoryName,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -660,7 +738,7 @@ namespace Example
             var responseId = 789;  // long? | responseId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -685,7 +763,7 @@ Name | Type | Description  | Notes
  **responseId** | **long?**| responseId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -734,7 +812,7 @@ namespace Example
             var responseId = 789;  // long? | responseId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -760,7 +838,7 @@ Name | Type | Description  | Notes
  **responseId** | **long?**| responseId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -805,7 +883,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
+            var interactionStatus = interactionStatus_example;  // string |   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
@@ -813,7 +891,7 @@ namespace Example
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var categoryId = 789;  // long? | categoryId (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -835,7 +913,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
+ **interactionStatus** | **string**|   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
@@ -843,7 +921,7 @@ Name | Type | Description  | Notes
  **interactionType** | **string**| Interaction Type | [optional] 
  **categoryId** | **long?**| categoryId | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -891,7 +969,7 @@ namespace Example
             var interactionId = 789;  // long? | interactionId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -916,7 +994,7 @@ Name | Type | Description  | Notes
  **interactionId** | **long?**| interactionId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -967,7 +1045,7 @@ namespace Example
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ (optional)  (default to categoryId,categoryName,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -995,7 +1073,7 @@ Name | Type | Description  | Notes
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ | [optional] [default to categoryId,categoryName,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1040,7 +1118,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InteractionApi();
-            var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
+            var interactionStatus = interactionStatus_example;  // string |   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
@@ -1048,7 +1126,7 @@ namespace Example
             var categoryId = 789;  // long? | categoryId (optional) 
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1070,7 +1148,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
+ **interactionStatus** | **string**|   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
@@ -1078,7 +1156,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| categoryId | [optional] 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1129,7 +1207,7 @@ namespace Example
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | interactionType (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1157,7 +1235,7 @@ Name | Type | Description  | Notes
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| interactionType | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1209,7 +1287,7 @@ namespace Example
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1238,7 +1316,7 @@ Name | Type | Description  | Notes
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,,interactionType]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1289,7 +1367,7 @@ namespace Example
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)profileImage<br/><b>A) Available values-</b><br/>1)userId<br/>2)firstName<br/>3)lastName<br/>4)emailId<br/>5)profileImage<br/>6)birthDate<br/> (optional)  (default to userId,firstName,lastName)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)userId       2)firstName       3)lastName       4)profileImage        **A) Available values-**       1)userId       2)firstName       3)lastName       4)emailId       5)profileImage       6)birthDate        *_/ (optional)  (default to userId,firstName,lastName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1317,7 +1395,7 @@ Name | Type | Description  | Notes
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)profileImage&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)userId&lt;br/&gt;2)firstName&lt;br/&gt;3)lastName&lt;br/&gt;4)emailId&lt;br/&gt;5)profileImage&lt;br/&gt;6)birthDate&lt;br/&gt; | [optional] [default to userId,firstName,lastName]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)userId       2)firstName       3)lastName       4)profileImage        **A) Available values-**       1)userId       2)firstName       3)lastName       4)emailId       5)profileImage       6)birthDate        *_/ | [optional] [default to userId,firstName,lastName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1367,7 +1445,7 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1394,7 +1472,7 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1440,7 +1518,7 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var userId = 789;  // long? | userId whose shared interactions want to get
-            var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
+            var interactionStatus = interactionStatus_example;  // string |   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
@@ -1448,7 +1526,7 @@ namespace Example
             var categoryId = 789;  // long? | categoryId (optional) 
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1471,7 +1549,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| userId whose shared interactions want to get | 
- **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
+ **interactionStatus** | **string**|   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
@@ -1479,7 +1557,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| categoryId | [optional] 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1531,7 +1609,7 @@ namespace Example
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | interactionType (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ (optional)  (default to categoryId,categoryName,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1560,7 +1638,7 @@ Name | Type | Description  | Notes
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| interactionType | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ | [optional] [default to categoryId,categoryName,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1606,7 +1684,7 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var userId = 789;  // long? | User Id whose subcribed interactions wants to get
-            var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
+            var interactionStatus = interactionStatus_example;  // string |   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
@@ -1614,7 +1692,7 @@ namespace Example
             var categoryId = 789;  // long? | categoryId (optional) 
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1637,7 +1715,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id whose subcribed interactions wants to get | 
- **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
+ **interactionStatus** | **string**|   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED   *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
@@ -1645,7 +1723,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| categoryId | [optional] 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1694,7 +1772,7 @@ namespace Example
             var responseId = 789;  // long? | responseId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1720,7 +1798,7 @@ Name | Type | Description  | Notes
  **responseId** | **long?**| responseId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1769,7 +1847,7 @@ namespace Example
             var responseId = 789;  // long? | responseId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1795,7 +1873,7 @@ Name | Type | Description  | Notes
  **responseId** | **long?**| responseId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1841,14 +1919,14 @@ namespace Example
 
             var apiInstance = new InteractionApi();
             var searchText = searchText_example;  // string | Search Text, keywords to search
-            var interactionStatus = interactionStatus_example;  // string | Interaction status <br/> 1) ALL <br/> 2)  UNREPLIED <br/> 3)  REPLIED <br/> 4)  CLOSED
+            var interactionStatus = interactionStatus_example;  // string |   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED  *_/
             var start = 56;  // int? | start, initial value start from 0
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionType = interactionType_example;  // string | Interaction Type (optional) 
             var association = association_example;  // string | association (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1871,14 +1949,14 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **searchText** | **string**| Search Text, keywords to search | 
- **interactionStatus** | **string**| Interaction status &lt;br/&gt; 1) ALL &lt;br/&gt; 2)  UNREPLIED &lt;br/&gt; 3)  REPLIED &lt;br/&gt; 4)  CLOSED | 
+ **interactionStatus** | **string**|   /_*  Interaction status       1) ALL       2)  UNREPLIED       3)  REPLIED       4)  CLOSED  *_/ | 
  **start** | **int?**| start, initial value start from 0 | 
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionType** | **string**| Interaction Type | [optional] 
  **association** | **string**| association | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1926,7 +2004,7 @@ namespace Example
             var categoryId = 789;  // long? | categoryId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ (optional)  (default to categoryId,categoryName,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -1951,7 +2029,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| categoryId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ | [optional] [default to categoryId,categoryName,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -1999,7 +2077,7 @@ namespace Example
             var interactionId = 789;  // long? | interactionId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2024,7 +2102,7 @@ Name | Type | Description  | Notes
  **interactionId** | **long?**| interactionId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -2073,7 +2151,7 @@ namespace Example
             var responseId = 789;  // long? | responseId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2099,7 +2177,7 @@ Name | Type | Description  | Notes
  **responseId** | **long?**| responseId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -2147,7 +2225,7 @@ namespace Example
             var categoryId = 789;  // long? | categoryId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ (optional)  (default to categoryId,categoryName,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2172,7 +2250,7 @@ Name | Type | Description  | Notes
  **categoryId** | **long?**| categoryId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ | [optional] [default to categoryId,categoryName,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -2220,7 +2298,7 @@ namespace Example
             var interactionId = 789;  // long? | interactionId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2245,7 +2323,7 @@ Name | Type | Description  | Notes
  **interactionId** | **long?**| interactionId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -2295,7 +2373,7 @@ namespace Example
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var interactionDescription = interactionDescription_example;  // string | Describe Interaction (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)createdDate<br/>5)interactionType<br/><b>A) Available values-</b><br/>1)interactionId<br/>2)interactionTitle<br/>3)interactionDescription<br/>4)issuer<br/>5)noOfResponses<br/>6)isClosed<br/>7)createdDate<br/>8)lastUpdatedDate<br/>9)videoId<br/>10)fileURL<br/>11)isSubscribed<br/>12)sentiment</br>13)entity<br/>14)interactionType<br/>15)categoryId<br/>16)categoryName (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ (optional)  (default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2322,7 +2400,7 @@ Name | Type | Description  | Notes
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **interactionDescription** | **string**| Describe Interaction | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)interactionType&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)interactionId&lt;br/&gt;2)interactionTitle&lt;br/&gt;3)interactionDescription&lt;br/&gt;4)issuer&lt;br/&gt;5)noOfResponses&lt;br/&gt;6)isClosed&lt;br/&gt;7)createdDate&lt;br/&gt;8)lastUpdatedDate&lt;br/&gt;9)videoId&lt;br/&gt;10)fileURL&lt;br/&gt;11)isSubscribed&lt;br/&gt;12)sentiment&lt;/br&gt;13)entity&lt;br/&gt;14)interactionType&lt;br/&gt;15)categoryId&lt;br/&gt;16)categoryName | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)interactionId       2)interactionTitle       3)interactionDescription       4)createdDate       5)interactionType        **A) Available values-**        1)interactionId       2)interactionTitle       3)interactionDescription       4)issuer       5)noOfResponses       6)isClosed       7)createdDate       8)lastUpdatedDate       9)videoId       10)fileURL       11)isSubscribed       12)sentiment       13)entity       14)interactionType       15)categoryId       16)categoryName   *_/ | [optional] [default to interactionId,interactionTitle,interactionDescription,createdDate,interactionType,categoryName]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -2372,7 +2450,7 @@ namespace Example
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var categoryDescription = categoryDescription_example;  // string | Describe category (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)interactionType<br/><b>A) Available values -</b> <br/>1)categoryId<br/>2)categoryName<br/>3)categoryDescription<br/>4)createdDate<br/>5)isSubscribed<br/>6)interactionType (optional)  (default to categoryId,categoryName,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ (optional)  (default to categoryId,categoryName,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2399,7 +2477,7 @@ Name | Type | Description  | Notes
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **categoryDescription** | **string**| Describe category | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt; &lt;br/&gt;1)categoryId&lt;br/&gt;2)categoryName&lt;br/&gt;3)categoryDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)isSubscribed&lt;br/&gt;6)interactionType | [optional] [default to categoryId,categoryName,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)categoryId       2)categoryName       3)interactionType        **A) Available values -**         1)categoryId       2)categoryName       3)categoryDescription       4)createdDate       5)isSubscribed       6)interactionType   *_/ | [optional] [default to categoryId,categoryName,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -2448,7 +2526,7 @@ namespace Example
             var response = response_example;  // string | response
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionType<br/><b>A) Available values -</b><br/>1)responseId<br/>2)responseDescription<br/>3)createdDate<br/>4)interactionId<br/>5)respondingUser<br/>6)isMarkedResponse<br/>7)noOfLikes<br/>8)noOfDislikes<br/>9)replyCount<br/>10)isLiked<br/>11)isDisliked<br/>12)interactionType (optional)  (default to responseId,responseDescription,createdDate,interactionType)
+            var fields = fields_example;  // string | Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ (optional)  (default to responseId,responseDescription,createdDate,interactionType)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -2474,7 +2552,7 @@ Name | Type | Description  | Notes
  **response** | **string**| response | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionType&lt;br/&gt;&lt;b&gt;A) Available values -&lt;/b&gt;&lt;br/&gt;1)responseId&lt;br/&gt;2)responseDescription&lt;br/&gt;3)createdDate&lt;br/&gt;4)interactionId&lt;br/&gt;5)respondingUser&lt;br/&gt;6)isMarkedResponse&lt;br/&gt;7)noOfLikes&lt;br/&gt;8)noOfDislikes&lt;br/&gt;9)replyCount&lt;br/&gt;10)isLiked&lt;br/&gt;11)isDisliked&lt;br/&gt;12)interactionType | [optional] [default to responseId,responseDescription,createdDate,interactionType]
+ **fields** | **string**| Filter fields in result list       /_*   **A) Default values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionType        **A) Available values -**        1)responseId       2)responseDescription       3)createdDate       4)interactionId       5)respondingUser       6)isMarkedResponse       7)noOfLikes       8)noOfDislikes       9)replyCount       10)isLiked       11)isDisliked       12)interactionType   *_/ | [optional] [default to responseId,responseDescription,createdDate,interactionType]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type

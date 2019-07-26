@@ -319,8 +319,8 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var interactionType = interactionType_example;  // string | Interaction Type <br/>1)Question<br/>2)Complaint<br/>3)Idea<br/>4)Blog<br/>5)Discussion (optional) 
-            var sentimentType = sentimentType_example;  // string | Sentiment Type <br/>1)Positive<br/>2)Negative<br/> 3)Neutral (optional) 
+            var interactionType = interactionType_example;  // string |   /_*  Interaction Type      1) Question     2) Complaint    3) Idea     4) Blog     5) Discussion   *_/ (optional) 
+            var sentimentType = sentimentType_example;  // string |   /_*  Sentiment Type      1)Positive     2)Negative      3)Neutral  *_/ (optional) 
             var additionalInformation = additionalInformation_example;  // string | additional information (optional) 
             var association = association_example;  // string | association (optional) 
             var categoryId = 789;  // long? | categoryId (optional) 
@@ -351,8 +351,8 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **interactionType** | **string**| Interaction Type &lt;br/&gt;1)Question&lt;br/&gt;2)Complaint&lt;br/&gt;3)Idea&lt;br/&gt;4)Blog&lt;br/&gt;5)Discussion | [optional] 
- **sentimentType** | **string**| Sentiment Type &lt;br/&gt;1)Positive&lt;br/&gt;2)Negative&lt;br/&gt; 3)Neutral | [optional] 
+ **interactionType** | **string**|   /_*  Interaction Type      1) Question     2) Complaint    3) Idea     4) Blog     5) Discussion   *_/ | [optional] 
+ **sentimentType** | **string**|   /_*  Sentiment Type      1)Positive     2)Negative      3)Neutral  *_/ | [optional] 
  **additionalInformation** | **string**| additional information | [optional] 
  **association** | **string**| association | [optional] 
  **categoryId** | **long?**| categoryId | [optional] 
@@ -404,7 +404,7 @@ namespace Example
             var endTime = 789;  // long? | end time
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var interactionType = interactionType_example;  // string | Interaction Type <br/>1)Question<br/>2)Complaint<br/>3)Idea<br/>4)Blog<br/>5)Discussion (optional) 
+            var interactionType = interactionType_example;  // string |   /_*  Interaction Type      1) Question     2) Complaint     3) Idea     4) Blog     5) Discussion   *_/ (optional) 
             var additionalInformation = additionalInformation_example;  // string | additional information (optional) 
             var association = association_example;  // string | association (optional) 
             var categoryId = 789;  // long? | categoryId (optional) 
@@ -433,7 +433,7 @@ Name | Type | Description  | Notes
  **endTime** | **long?**| end time | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **interactionType** | **string**| Interaction Type &lt;br/&gt;1)Question&lt;br/&gt;2)Complaint&lt;br/&gt;3)Idea&lt;br/&gt;4)Blog&lt;br/&gt;5)Discussion | [optional] 
+ **interactionType** | **string**|   /_*  Interaction Type      1) Question     2) Complaint     3) Idea     4) Blog     5) Discussion   *_/ | [optional] 
  **additionalInformation** | **string**| additional information | [optional] 
  **association** | **string**| association | [optional] 
  **categoryId** | **long?**| categoryId | [optional] 
@@ -488,10 +488,10 @@ namespace Example
             var end = 56;  // int? | end
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var sentimentType = sentimentType_example;  // string | Sentiment Type <br/>1)Positive<br/>2)Negative<br/>3)Neutral (optional) 
+            var sentimentType = sentimentType_example;  // string |   /_*   Sentiment Type      1)Positive     2)Negative     3)Neutral   *_/ (optional) 
             var additionalInformation = additionalInformation_example;  // string | additional information (optional) 
             var association = association_example;  // string | association (optional) 
-            var interactionType = interactionType_example;  // string | Interaction Type <br/>1)Question<br/>2)Complaint<br/>3)Idea<br/>4)Blog<br/>5)Discussion (optional) 
+            var interactionType = interactionType_example;  // string |   /_*  Interaction Type      1)Question     2)Complaint     3)Idea     4)Blog     5)Discussion   *_/ (optional) 
             var categoryId = 789;  // long? | categoryId (optional) 
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
@@ -521,10 +521,10 @@ Name | Type | Description  | Notes
  **end** | **int?**| end | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **sentimentType** | **string**| Sentiment Type &lt;br/&gt;1)Positive&lt;br/&gt;2)Negative&lt;br/&gt;3)Neutral | [optional] 
+ **sentimentType** | **string**|   /_*   Sentiment Type      1)Positive     2)Negative     3)Neutral   *_/ | [optional] 
  **additionalInformation** | **string**| additional information | [optional] 
  **association** | **string**| association | [optional] 
- **interactionType** | **string**| Interaction Type &lt;br/&gt;1)Question&lt;br/&gt;2)Complaint&lt;br/&gt;3)Idea&lt;br/&gt;4)Blog&lt;br/&gt;5)Discussion | [optional] 
+ **interactionType** | **string**|   /_*  Interaction Type      1)Question     2)Complaint     3)Idea     4)Blog     5)Discussion   *_/ | [optional] 
  **categoryId** | **long?**| categoryId | [optional] 
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 

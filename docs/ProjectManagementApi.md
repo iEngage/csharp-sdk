@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 Comment on milestone
 
-This service allows a user to comment on a milestone. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. milestoneId (Path Parameter)</br>2. commentText </br>
+This service allows a user to comment on a milestone. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.  **Required fields**  1. milestoneId (Path Parameter) 2. commentText  
 
 ### Example
 ```csharp
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 Comment on task
 
-This service allows a user to comment on a task. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. taskId (Path Parameter)</br>2. commentText </br>
+This service allows a user to comment on a task. The following fields(key:value) are required to be present in the Comment JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.  **Required fields**  1. **taskId (Path Parameter)**  2. **commentText**  
 
 ### Example
 ```csharp
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 Create milestone
 
-This service allows a user to create a milestone. The following fields(key:value) are required to be present in the Milestone JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br><b>Required fields </br>1. milestoneTitle </br>2. milestoneDescription </br>3. dueDate </br>4. neverDue </br>
+This service allows a user to create a milestone. The following fields(key:value) are required to be present in the Milestone JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.  **Required fields**  1. **milestoneTitle**  2. **milestoneDescription**  3. **dueDate**  4. **neverDue**  
 
 ### Example
 ```csharp
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 Create task
 
-This service allows a user to create a task. The following fields(key:value) are required to be present in the Task JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.</br> <b>Required fields </br>1. taskTitle </br>2. taskDescription </br>3. priority </br>4. dueDate </br>5. assigneeUserId </br>6. neverDue </br>7. user: { userId }</b>
+This service allows a user to create a task. The following fields(key:value) are required to be present in the Task JSON object. Refer to the Model & Model Schema of the expected JSON Object for the body of this API.   **Required fields**  1. **taskTitle**  2. **taskDescription**  3. **priority**  4. **dueDate**  5. **assigneeUserId**  6. **neverDue**  7. **user: { userId }**
 
 ### Example
 ```csharp
@@ -339,7 +339,7 @@ namespace Example
             var milestoneId = 789;  // long? | milestoneId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)milestoneId<br/>2)milestoneTitle<br/>3)milestoneDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)milestoneId<br/>2)milestoneTitle<br/>3)milestoneDescription<br/>4)createdDate<br/>5)status<br/>6)priority<br/>7)dueDate (optional)  (default to milestoneId,milestoneTitle,milestoneDescription,createdDate)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate        **A) Available values-**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate       5)status       6)priority       7)dueDate   *_/ (optional)  (default to milestoneId,milestoneTitle,milestoneDescription,createdDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
  **milestoneId** | **long?**| milestoneId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)milestoneId&lt;br/&gt;2)milestoneTitle&lt;br/&gt;3)milestoneDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)milestoneId&lt;br/&gt;2)milestoneTitle&lt;br/&gt;3)milestoneDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)status&lt;br/&gt;6)priority&lt;br/&gt;7)dueDate | [optional] [default to milestoneId,milestoneTitle,milestoneDescription,createdDate]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate        **A) Available values-**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate       5)status       6)priority       7)dueDate   *_/ | [optional] [default to milestoneId,milestoneTitle,milestoneDescription,createdDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -412,7 +412,7 @@ namespace Example
             var taskId = 789;  // long? | taskId
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)dueDate<br/><b>A) Available values-</b><br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)status<br/>5)priority<br/>6)dueDate<br/>7)milestoneName<br/>8)groupType<br/>9)groupName (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
  **taskId** | **long?**| taskId | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)dueDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)status&lt;br/&gt;5)priority&lt;br/&gt;6)dueDate&lt;br/&gt;7)milestoneName&lt;br/&gt;8)groupType&lt;br/&gt;9)groupName | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -485,7 +485,7 @@ namespace Example
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
             var organizationId = 789;  // long? | organizationId (optional) 
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)milestoneId<br/>2)milestoneTitle<br/>3)milestoneDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)milestoneId<br/>2)milestoneTitle<br/>3)milestoneDescription<br/>4)createdDate<br/>5)status<br/>6)priority<br/>7)dueDate (optional)  (default to milestoneId,milestoneTitle,milestoneDescription,createdDate)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate        **A) Available values-**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate       5)status       6)priority       7)dueDate   *_/ (optional)  (default to milestoneId,milestoneTitle,milestoneDescription,createdDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -510,7 +510,7 @@ Name | Type | Description  | Notes
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
  **organizationId** | **long?**| organizationId | [optional] 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)milestoneId&lt;br/&gt;2)milestoneTitle&lt;br/&gt;3)milestoneDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)milestoneId&lt;br/&gt;2)milestoneTitle&lt;br/&gt;3)milestoneDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)status&lt;br/&gt;6)priority&lt;br/&gt;7)dueDate | [optional] [default to milestoneId,milestoneTitle,milestoneDescription,createdDate]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate        **A) Available values-**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate       5)status       6)priority       7)dueDate   *_/ | [optional] [default to milestoneId,milestoneTitle,milestoneDescription,createdDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -698,10 +698,10 @@ namespace Example
 
             var apiInstance = new ProjectManagementApi();
             var userId = 789;  // long? | User Id whose assinged task want to get
-            var status = 56;  // int? | Task status <br/> 0 - ALL <br/> 1 - OPEN <br/> 2 - PERCENT_TWENTY <br/> 3 - PERCENT_FORTY <br/> 4 - PERCENT_SIXTY <br/> 5 - PERCENT_EIGHTY <br/> 6 - RESOLVED <br/> 7 - REOPENED
+            var status = 56;  // int? |   /_*   Task status   0 - ALL   1 - OPEN   2 - PERCENT_TWENTY   3 - PERCENT_FORTY   4 - PERCENT_SIXTY   5 - PERCENT_EIGHTY   6 - RESOLVED   7 - REOPENED   *_/
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)dueDate<br/><b>A) Available values-</b><br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)status<br/>5)priority<br/>6)dueDate<br/>7)milestoneName<br/>8)groupType<br/>9)groupName (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -724,10 +724,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **long?**| User Id whose assinged task want to get | 
- **status** | **int?**| Task status &lt;br/&gt; 0 - ALL &lt;br/&gt; 1 - OPEN &lt;br/&gt; 2 - PERCENT_TWENTY &lt;br/&gt; 3 - PERCENT_FORTY &lt;br/&gt; 4 - PERCENT_SIXTY &lt;br/&gt; 5 - PERCENT_EIGHTY &lt;br/&gt; 6 - RESOLVED &lt;br/&gt; 7 - REOPENED | 
+ **status** | **int?**|   /_*   Task status   0 - ALL   1 - OPEN   2 - PERCENT_TWENTY   3 - PERCENT_FORTY   4 - PERCENT_SIXTY   5 - PERCENT_EIGHTY   6 - RESOLVED   7 - REOPENED   *_/ | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)dueDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)status&lt;br/&gt;5)priority&lt;br/&gt;6)dueDate&lt;br/&gt;7)milestoneName&lt;br/&gt;8)groupType&lt;br/&gt;9)groupName | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -778,7 +778,7 @@ namespace Example
             var dueDate = dueDate_example;  // string | Due date (Format: MM-dd-yyyy HH:mm:ss a)
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)milestoneId<br/>2)milestoneTitle<br/>3)milestoneDescription<br/>4)createdDate<br/><b>A) Available values-</b><br/>1)milestoneId<br/>2)milestoneTitle<br/>3)milestoneDescription<br/>4)createdDate<br/>5)status<br/>6)priority<br/>7)dueDate (optional)  (default to milestoneId,milestoneTitle,milestoneDescription,createdDate)
+            var fields = fields_example;  // string | Filter fields in result list      /_*   **A) Default values -**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate        **A) Available values-**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate       5)status       6)priority       7)dueDate   *_/ (optional)  (default to milestoneId,milestoneTitle,milestoneDescription,createdDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -806,7 +806,7 @@ Name | Type | Description  | Notes
  **dueDate** | **string**| Due date (Format: MM-dd-yyyy HH:mm:ss a) | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)milestoneId&lt;br/&gt;2)milestoneTitle&lt;br/&gt;3)milestoneDescription&lt;br/&gt;4)createdDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)milestoneId&lt;br/&gt;2)milestoneTitle&lt;br/&gt;3)milestoneDescription&lt;br/&gt;4)createdDate&lt;br/&gt;5)status&lt;br/&gt;6)priority&lt;br/&gt;7)dueDate | [optional] [default to milestoneId,milestoneTitle,milestoneDescription,createdDate]
+ **fields** | **string**| Filter fields in result list      /_*   **A) Default values -**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate        **A) Available values-**        1)milestoneId       2)milestoneTitle       3)milestoneDescription       4)createdDate       5)status       6)priority       7)dueDate   *_/ | [optional] [default to milestoneId,milestoneTitle,milestoneDescription,createdDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -855,11 +855,11 @@ namespace Example
             var title = title_example;  // string | title
             var description = description_example;  // string | description
             var dueDate = dueDate_example;  // string | Due date
-            var status = 56;  // int? | Task status <br/> 1 - OPEN <br/> 2 - PERCENT_TWENTY <br/> 3 - PERCENT_FORTY <br/> 4 - PERCENT_SIXTY <br/> 5 - PERCENT_EIGHTY <br/> 6 - RESOLVED <br/> 7 - REOPENED
+            var status = 56;  // int? |   /_*   Task status   1 - OPEN   2 - PERCENT_TWENTY   3 - PERCENT_FORTY   4 - PERCENT_SIXTY   5 - PERCENT_EIGHTY   6 - RESOLVED   7 - REOPENED   *_/
             var reAssigneeUserId = 789;  // long? | re-assignee User Id
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)dueDate<br/><b>A) Available values-</b><br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)status<br/>5)priority<br/>6)dueDate<br/>7)milestoneName<br/>8)groupType<br/>9)groupName (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -885,11 +885,11 @@ Name | Type | Description  | Notes
  **title** | **string**| title | 
  **description** | **string**| description | 
  **dueDate** | **string**| Due date | 
- **status** | **int?**| Task status &lt;br/&gt; 1 - OPEN &lt;br/&gt; 2 - PERCENT_TWENTY &lt;br/&gt; 3 - PERCENT_FORTY &lt;br/&gt; 4 - PERCENT_SIXTY &lt;br/&gt; 5 - PERCENT_EIGHTY &lt;br/&gt; 6 - RESOLVED &lt;br/&gt; 7 - REOPENED | 
+ **status** | **int?**|   /_*   Task status   1 - OPEN   2 - PERCENT_TWENTY   3 - PERCENT_FORTY   4 - PERCENT_SIXTY   5 - PERCENT_EIGHTY   6 - RESOLVED   7 - REOPENED   *_/ | 
  **reAssigneeUserId** | **long?**| re-assignee User Id | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)dueDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)status&lt;br/&gt;5)priority&lt;br/&gt;6)dueDate&lt;br/&gt;7)milestoneName&lt;br/&gt;8)groupType&lt;br/&gt;9)groupName | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
@@ -935,10 +935,10 @@ namespace Example
 
             var apiInstance = new ProjectManagementApi();
             var taskId = 789;  // long? | taskId
-            var status = 56;  // int? | Task status <br/> 1 - OPEN <br/> 2 - PERCENT_TWENTY <br/> 3 - PERCENT_FORTY <br/> 4 - PERCENT_SIXTY <br/> 5 - PERCENT_EIGHTY <br/> 6 - RESOLVED <br/> 7 - REOPENED
+            var status = 56;  // int? |   /_*  Task status   1 - OPEN   2 - PERCENT_TWENTY   3 - PERCENT_FORTY   4 - PERCENT_SIXTY   5 - PERCENT_EIGHTY   6 - RESOLVED   7 - REOPENED   *_/
             var requesterId = requesterId_example;  // string | requesterId can be user id OR email address.
             var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-            var fields = fields_example;  // string | Filter fields in result list<br/> <b>A) Default values -</b> <br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)dueDate<br/><b>A) Available values-</b><br/>1)taskId<br/>2)taskTitle<br/>3)taskDescription<br/>4)status<br/>5)priority<br/>6)dueDate<br/>7)milestoneName<br/>8)groupType<br/>9)groupName (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
+            var fields = fields_example;  // string | Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ (optional)  (default to taskId,taskTitle,taskDescription,dueDate)
             var accessToken = accessToken_example;  // string | Unique session token for user. To get access token user will have to authenticate (optional) 
 
             try
@@ -961,10 +961,10 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **taskId** | **long?**| taskId | 
- **status** | **int?**| Task status &lt;br/&gt; 1 - OPEN &lt;br/&gt; 2 - PERCENT_TWENTY &lt;br/&gt; 3 - PERCENT_FORTY &lt;br/&gt; 4 - PERCENT_SIXTY &lt;br/&gt; 5 - PERCENT_EIGHTY &lt;br/&gt; 6 - RESOLVED &lt;br/&gt; 7 - REOPENED | 
+ **status** | **int?**|   /_*  Task status   1 - OPEN   2 - PERCENT_TWENTY   3 - PERCENT_FORTY   4 - PERCENT_SIXTY   5 - PERCENT_EIGHTY   6 - RESOLVED   7 - REOPENED   *_/ | 
  **requesterId** | **string**| requesterId can be user id OR email address. | 
  **clientToken** | **string**| Use the Client Token. Please generate it from the Applications section under the Production &amp; Sandbox tabs | 
- **fields** | **string**| Filter fields in result list&lt;br/&gt; &lt;b&gt;A) Default values -&lt;/b&gt; &lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)dueDate&lt;br/&gt;&lt;b&gt;A) Available values-&lt;/b&gt;&lt;br/&gt;1)taskId&lt;br/&gt;2)taskTitle&lt;br/&gt;3)taskDescription&lt;br/&gt;4)status&lt;br/&gt;5)priority&lt;br/&gt;6)dueDate&lt;br/&gt;7)milestoneName&lt;br/&gt;8)groupType&lt;br/&gt;9)groupName | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
+ **fields** | **string**| Filter fields in result list        /_*   **A) Default values -**        1)taskId       2)taskTitle       3)taskDescription       4)dueDate        **A) Available values-**        1)taskId       2)taskTitle       3)taskDescription       4)status       5)priority       6)dueDate       7)milestoneName       8)groupType       9)groupName   *_/ | [optional] [default to taskId,taskTitle,taskDescription,dueDate]
  **accessToken** | **string**| Unique session token for user. To get access token user will have to authenticate | [optional] 
 
 ### Return type
