@@ -1,4 +1,4 @@
-# IO.IEngage - the C# library for the iEngage 2.0 API
+# IO.IEngage - the C# library for the iEngage 2.1 API
 
 This API enables Intelligent Engagement for your Business. iEngage is a platform that combines process, augmented intelligence and rewards to help you intelligently engage customers.
 
