@@ -1,4 +1,4 @@
-# IO.IEngage - the C# library for the iEngage 2.1 API
+# IO.IEngage - the C# library for the iEngage 2.0 API
 
 This API enables Intelligent Engagement for your Business. iEngage is a platform that combines process, augmented intelligence and rewards to help you intelligently engage customers.
 
@@ -27,7 +27,10 @@ Install-Package Newtonsoft.Json
 NOTE: RestSharp versions greater than 105.1.0 have a bug which causes file uploads to fail. See [RestSharp#742](https://github.com/restsharp/RestSharp/issues/742)
 
 <a name="installation"></a>
-## Installation
+## Installation 
+
+Download or clone this repository.
+
 Run the following command to generate the DLL
 - [Mac/Linux] `/bin/sh build.sh`
 - [Windows] `build.bat`
@@ -38,44 +41,44 @@ using IO.IEngage.Api;
 using IO.IEngage.Client;
 using IO.IEngage.Model;
 ```
+
+If you're using Visual Studio, please ensure that the Output Type is not Class Library. Set it to Windows Application / Console Application. \[Right-click on Project > Properties > Application : Output Type]
 <a name="getting-started"></a>
 ## Getting Started
 
 ```csharp
 using System;
-using System.Diagnostics;
-using IO.IEngage.Api;
-using IO.IEngage.Client;
-using IO.IEngage.Model;
-
-namespace Example
-{
-    public class Example
-    {
-        public void main()
-        {
-            
-            // Configure OAuth2 access token for authorization: default
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new AugmentedIntelligenceApi();
-            var text = text_example;  // string | Text you want classified
-            var id = 789;  // long? | Classifier ID from the Admin Panel
-            var clientToken = clientToken_example;  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs
-
-            try
-            {
-                // Classifies using your classifier
-                VerveResponseTextClassificationList result = apiInstance.Classify(text, id, clientToken);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling AugmentedIntelligenceApi.Classify: " + e.Message );
-            }
-        }
-    }
-}
+ using System.Diagnostics;
+ using IO.IEngage.Api;
+ using IO.IEngage.Client;
+ using IO.IEngage.Model;
+ namespace IEngageExample
+ {
+     class InteractionExample
+     {
+         static void Main()
+         {
+             // Configure OAuth2 access token for authorization: default
+             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN"; // string | Please generate it from the Applications section under the Production & Sandbox tabs  
+             InteractionApi interaction = new InteractionApi();
+             string clientToken = "clientToken_example";  // string | Use the Client Token. Please generate it from the Applications section under the Production & Sandbox tabs  
+             string requesterId = "requesterId_example";  // string | requesterId can be user id OR email address.
+             string accessToken = null; // string | Unique session token for user. To get access token user will have to authenticate (optional) 
+             InteractionInputModel body = new InteractionInputModel();  // InteractionInputModel |  (optional)
+             body.InteractionTitle = "Your message goes here"; //Change this
+             try
+             {
+                 // Share interaction without attachment
+                 VerveResponseInteraction result = interaction.AddInteraction(requesterId, clientToken, body, accessToken);
+                 Debug.WriteLine(result);
+             }
+             catch (Exception e)
+             {
+                 Debug.Print("Exception when calling InteractionApi.AddInteraction: " + e.Message);
+             }
+         }
+     }
+ }
 ```
 
 <a name="documentation-for-api-endpoints"></a>
